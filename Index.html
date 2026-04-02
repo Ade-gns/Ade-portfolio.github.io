@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – Adelphe Borges-Silva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #0b0f1a;
+      --surface:   #111827;
+      --border:    #1e2a3a;
+      --accent:    #00c2ff;
+      --accent2:   #6ee7b7;
+      --text:      #e8edf5;
+      --muted:     #7a8aaa;
+      --card:      #131d2e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(11,15,26,.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: .04em;
+      color: var(--accent);
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 400;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 9rem 2rem 6rem;
+      overflow: hidden;
+    }
+
+    /* Animated gradient orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .35;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 480px; height: 480px; background: var(--accent);  top: -120px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 360px; height: 360px; background: var(--accent2); bottom: 0;   right: -80px; animation-delay: -4s; }
+    .orb-3 { width: 280px; height: 280px; background: #4f46e5;        top: 40%;   left: 55%;    animation-delay: -8s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 30px) scale(1.07); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      animation: fadeUp .9s .1s ease both;
+    }
+    h1 span { color: var(--accent); }
+
+    .hero-sub {
+      max-width: 680px;
+      margin: 1.6rem auto 0;
+      font-size: clamp(.95rem, 2vw, 1.1rem);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      line-height: 1.65;
+      font-weight: 400;
+      animation: fadeUp 1s .2s ease both;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 1s .35s ease both;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: .8rem 2rem;
+      border-radius: 6px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .05em;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 24px rgba(0,194,255,.35);
+    }
+    .btn-primary:hover { box-shadow: 0 0 36px rgba(0,194,255,.55); }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 3rem;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { position: relative; z-index: 1; padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .section-desc {
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── BTS SIO CARDS ── */
+    .bts-intro {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 3rem;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+    .bts-intro strong { color: var(--accent); font-weight: 500; }
+
+    .objectives {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 3rem;
+      margin-bottom: 3rem;
+    }
+    .objectives h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      color: var(--accent2);
+    }
+    .objectives ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .objectives li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .97rem;
+    }
+    .objectives li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: .05em;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .option-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .option-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .option-card.active { border-color: var(--accent); }
+    .option-card.active::before {
+      content: 'Option suivie';
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--accent);
+      color: #000;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: 100px;
+    }
+    .option-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-bottom: .3rem;
+    }
+    .option-card.active h3 { color: var(--accent); }
+    .option-card .opt-sub {
+      font-size: .8rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .opt-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.2rem; }
+    .opt-tag {
+      font-size: .78rem;
+      padding: .25rem .75rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .option-card.active .opt-tag { border-color: rgba(0,194,255,.3); color: var(--accent); }
+    .opt-desc { font-size: .9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── STATS ── */
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin: 4rem 0 0; }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.8rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .stat-label { font-size: .85rem; color: var(--muted); letter-spacing: .05em; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .options-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .bts-intro, .objectives { padding: 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">ABS ·</div>
+    <ul class="nav-links">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#bts">BTS SIO</a></li>
+      <li><a href="#">Réalisations</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="accueil">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="hero-badge">BTS SIO · Option SISR · 2025</div>
+
+    <h1>Bienvenue sur mon<br><span>Portfolio</span></h1>
+
+    <p class="hero-sub">
+      Vous trouverez l'ensemble des différentes réalisations<br>
+      que j'ai pu effectuer durant mes années de formation
+    </p>
+
+    <div class="hero-cta">
+      <a href="#bts" class="btn btn-primary">Découvrir le BTS SIO</a>
+      <a href="#" class="btn btn-ghost">Voir mes réalisations</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BTS SIO -->
+  <section id="bts">
+    <div class="container">
+      <p class="section-label">Formation</p>
+      <h2 class="section-title">Qu'est-ce que le BTS SIO ?</h2>
+      <p class="section-desc">
+        Le diplôme qui prépare aux métiers de l'informatique en deux ans, avec deux spécialités adaptées aux différents profils et aspirations professionnelles.
+      </p>
+
+      <div class="bts-intro">
+        Le <strong>BTS Services Informatiques aux Organisations</strong> est une formation en deux ans qui prépare aux métiers de l'informatique. Il propose deux spécialités distinctes, adaptées aux différents profils et aspirations professionnelles. La formation associée à ce diplôme prépare l'apprenti à devenir <strong>administrateur de réseaux locaux</strong> ou <strong>développeur d'applications informatiques</strong>.
+      </div>
+
+      <div class="objectives">
+        <h3>Objectifs du BTS</h3>
+        <ul>
+          <li>Former des techniciens capables de gérer un parc informatique ou de développer des applications</li>
+          <li>Apporter des compétences techniques solides et une culture générale en informatique</li>
+          <li>Permettre une insertion professionnelle rapide ou une poursuite d'études supérieures</li>
+        </ul>
+      </div>
+
+      <div class="options-grid">
+        <!-- SISR -->
+        <div class="option-card active">
+          <h3>Option SISR</h3>
+          <div class="opt-sub">Solutions d'Infrastructure, Systèmes et Réseaux</div>
+          <div class="opt-tags">
+            <span class="opt-tag">Réseaux & Infrastructures</span>
+            <span class="opt-tag">Cybersécurité</span>
+            <span class="opt-tag">Administration systèmes</span>
+            <span class="opt-tag">Virtualisation</span>
+          </div>
+          <p class="opt-desc">
+            Forme aux métiers liés à la conception et la maintenance d'infrastructures réseaux, avec un focus important sur la cybersécurité et l'administration des systèmes.
+          </p>
+        </div>
+
+        <!-- SLAM -->
+        <div class="option-card">
+          <h3>Option SLAM</h3>
+          <div class="opt-sub">Solutions Logicielles et Applications Métiers</div>
+          <div class="opt-tags">
+            <span class="opt-tag">Développement</span>
+            <span class="opt-tag">Bases de données</span>
+            <span class="opt-tag">Applications métiers</span>
+            <span class="opt-tag">Solutions de gestion</span>
+          </div>
+          <p class="opt-desc">
+            Prépare aux métiers du développement d'applications, avec des compétences en programmation et bases de données pour concevoir des solutions logicielles métiers.
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Ans de formation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Options disponibles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Opportunités de carrière</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Adelphe Borges-Silva · Portfolio BTS SIO SISR</span>
+    <span>
+      <a href="mailto:Borges.adelphe@gmail.com">Borges.adelphe@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="tel:0752918808">07 52 91 88 08</a>
+    </span>
+  </footer>
+
+</body>
+</html>
