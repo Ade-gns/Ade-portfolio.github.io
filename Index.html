@@ -15,6 +15,7 @@
       --text:      #e8edf5;
       --muted:     #7a8aaa;
       --card:      #131d2e;
+      --orange:    #e8873a;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -218,46 +219,124 @@
       margin-bottom: 3.5rem;
     }
 
-    /* ── BTS SIO CARDS ── */
-    .bts-intro {
+    /* ── BTS SIO NOUVEAU STYLE ── */
+    .bts-intro-text {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem 3rem;
-      margin-bottom: 3rem;
+      border-radius: 14px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      font-size: .97rem;
+      color: var(--muted);
       line-height: 1.8;
-      font-size: 1rem;
     }
-    .bts-intro strong { color: var(--accent); font-weight: 500; }
+    .bts-intro-text strong { color: var(--text); font-weight: 500; }
 
-    .objectives {
+    /* Présentation formation — 3 colonnes */
+    .formation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .formation-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem 3rem;
-      margin-bottom: 3rem;
+      border-radius: 14px;
+      padding: 1.6rem;
     }
-    .objectives h3 {
+    .formation-card-header {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .formation-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: rgba(232,135,58,.15);
+      border: 1px solid rgba(232,135,58,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .formation-card-title {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 1.2rem;
-      color: var(--accent2);
+      font-size: 1rem;
+      margin-bottom: .15rem;
     }
-    .objectives ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
-    .objectives li {
+    .formation-card-sub {
+      font-size: .78rem;
+      color: #e8873a;
+    }
+    .formation-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .formation-list li {
       display: flex;
       align-items: flex-start;
-      gap: .75rem;
-      font-size: .97rem;
+      gap: .6rem;
+      font-size: .85rem;
+      color: var(--muted);
     }
-    .objectives li::before {
-      content: '→';
-      color: var(--accent);
+    .formation-list li::before {
+      content: '⊙';
+      color: #e8873a;
       flex-shrink: 0;
-      margin-top: .05em;
+      font-size: .75rem;
+      margin-top: .15em;
     }
 
+    /* Compétences communes */
+    .competences-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .competences-block h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .competences-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .competence-col {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+    }
+    .competence-col-title {
+      font-size: .82rem;
+      font-weight: 600;
+      color: #e8873a;
+      margin-bottom: .8rem;
+    }
+    .competence-col ul { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+    .competence-col li {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .83rem;
+      color: var(--muted);
+    }
+    .competence-col li::before {
+      content: '›';
+      color: #e8873a;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      line-height: 1.3;
+    }
+
+    /* Options SISR / SLAM */
     .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -266,70 +345,195 @@
     .option-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem 2.5rem;
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
       position: relative;
-      overflow: hidden;
-      transition: border-color .3s, transform .3s;
+      transition: transform .3s;
     }
-    .option-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .option-card.active { border-color: var(--accent); }
-    .option-card.active::before {
-      content: 'Option suivie';
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: var(--accent);
-      color: #000;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .25rem .7rem;
-      border-radius: 100px;
+    .option-card:hover { transform: translateY(-3px); }
+    .option-card.active { border-color: #e8873a; }
+    .option-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
     }
+    .option-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .option-card.active .option-icon { background: rgba(232,135,58,.15); border: 1px solid rgba(232,135,58,.3); }
+    .option-card:not(.active) .option-icon { background: rgba(0,194,255,.1); border: 1px solid rgba(0,194,255,.2); }
     .option-card h3 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 1.5rem;
-      margin-bottom: .3rem;
+      font-size: 1.2rem;
+      margin-bottom: .2rem;
     }
-    .option-card.active h3 { color: var(--accent); }
+    .option-card.active h3 { color: #e8873a; }
+    .option-card:not(.active) h3 { color: var(--accent); }
     .option-card .opt-sub {
-      font-size: .8rem;
-      color: var(--muted);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-    }
-    .opt-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.2rem; }
-    .opt-tag {
       font-size: .78rem;
-      padding: .25rem .75rem;
-      border-radius: 100px;
-      border: 1px solid var(--border);
       color: var(--muted);
     }
-    .option-card.active .opt-tag { border-color: rgba(0,194,255,.3); color: var(--accent); }
-    .opt-desc { font-size: .9rem; color: var(--muted); line-height: 1.65; }
+    .option-card.active .opt-sub { color: #e8873a; opacity: .8; }
+    .option-card:not(.active) .opt-sub { color: var(--accent); opacity: .8; }
 
-    /* ── STATS ── */
-    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin: 4rem 0 0; }
-    .stat {
+    .opt-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: #e8873a;
+      color: #000;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .65rem;
+      border-radius: 100px;
+    }
+
+    .option-sections { display: flex; flex-direction: column; gap: .9rem; }
+    .option-section {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+    }
+    .option-section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      margin-bottom: .7rem;
+      color: var(--text);
+    }
+    .option-section ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .35rem .5rem; }
+    .option-section.single-col ul { grid-template-columns: 1fr; }
+    .option-section li {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .option-section li::before {
+      content: '›';
+      color: #e8873a;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .option-card:not(.active) .option-section li::before { color: var(--accent); }
+
+
+    /* ── COMPÉTENCES TECHNIQUES ── */
+    .competences-section-block {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.8rem;
-      text-align: center;
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 3rem;
     }
-    .stat-num {
+    .competences-section-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .competences-section-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: rgba(232,135,58,.2);
+      border: 1px solid rgba(232,135,58,.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .competences-section-title {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 2.8rem;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: .4rem;
+      font-size: 1.4rem;
     }
-    .stat-label { font-size: .85rem; color: var(--muted); letter-spacing: .05em; }
+    .comp-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .comp-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.3rem 1.4rem;
+    }
+    .comp-card-header {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1rem;
+    }
+    .comp-card-logo {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .comp-card-logo img { width: 28px; height: 28px; object-fit: contain; }
+    .comp-card-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .comp-card-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Distributions Linux */
+    .distrib-full { grid-column: 1 / -1; }
+    .distrib-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .distrib-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+    }
+    .distrib-logo {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(232,135,58,.1);
+      border: 1px solid rgba(232,135,58,.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .distrib-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: .35rem;
+    }
+    .distrib-desc {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -540,8 +744,10 @@
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1.2rem; }
       .options-grid { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr 1fr; }
-      .bts-intro, .objectives { padding: 1.5rem; }
+      .formation-grid { grid-template-columns: 1fr; }
+      .competences-grid { grid-template-columns: 1fr; }
+      .option-section ul { grid-template-columns: 1fr; }
+      .comp-cards-grid { grid-template-columns: 1fr 1fr; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
       .about-grid { grid-template-columns: 1fr; }
       .about-id-card { position: static; }
@@ -558,6 +764,7 @@
       <li><a href="#accueil">Accueil</a></li>
       <li><a href="#apropos">À propos</a></li>
       <li><a href="#bts">BTS SIO</a></li>
+      <li><a href="#competences">Compétences</a></li>
       <li><a href="#">Réalisations</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
@@ -616,7 +823,7 @@
               <div class="id-icon">✉️</div>
               <div>
                 <span class="id-label">Email</span>
-                <span class="id-value"><a href="mailto:borges.adelphe@gmail.com">borges.adelphe@gmail.com</a></span>
+                <span class="id-value"><a href="/cdn-cgi/l/email-protection#2b4944594c4e58054a4f4e475b434e6b4c464a424705484446"><span class="__cf_email__" data-cfemail="bcded3cedbd9cf92ddd8d9d0ccd4d9fcdbd1ddd5d092dfd3d1">[email&#160;protected]</span></a></span>
               </div>
             </div>
             <div class="id-row">
@@ -772,75 +979,373 @@
     <div class="container">
       <p class="section-label">Formation</p>
       <h2 class="section-title">Qu'est-ce que le BTS SIO ?</h2>
-      <p class="section-desc">
-        Le diplôme qui prépare aux métiers de l'informatique en deux ans, avec deux spécialités adaptées aux différents profils et aspirations professionnelles.
-      </p>
 
-      <div class="bts-intro">
-        Le <strong>BTS Services Informatiques aux Organisations</strong> est une formation en deux ans qui prépare aux métiers de l'informatique. Il propose deux spécialités distinctes, adaptées aux différents profils et aspirations professionnelles. La formation associée à ce diplôme prépare l'apprenti à devenir <strong>administrateur de réseaux locaux</strong> ou <strong>développeur d'applications informatiques</strong>.
+      <div class="bts-intro-text">
+        Le <strong>BTS Services Informatiques aux Organisations</strong> est une formation en deux ans qui prépare aux métiers de l'informatique. Il propose deux spécialités distinctes, adaptées aux différents profils et aspirations professionnelles. La formation prépare l'apprenti à devenir <strong>administrateur de réseaux locaux</strong> ou <strong>développeur d'applications informatiques</strong>.
       </div>
 
-      <div class="objectives">
-        <h3>Objectifs du BTS</h3>
-        <ul>
-          <li>Former des techniciens capables de gérer un parc informatique ou de développer des applications</li>
-          <li>Apporter des compétences techniques solides et une culture générale en informatique</li>
-          <li>Permettre une insertion professionnelle rapide ou une poursuite d'études supérieures</li>
-        </ul>
+      <!-- Présentation formation -->
+      <div class="formation-grid">
+        <div class="formation-card">
+          <div class="formation-card-header">
+            <div class="formation-icon">🕐</div>
+            <div>
+              <div class="formation-card-title">Organisation</div>
+              <div class="formation-card-sub">2 ans de formation</div>
+            </div>
+          </div>
+          <ul class="formation-list">
+            <li>1 350 heures de formation</li>
+            <li>3 jours entreprise / 2 jours formation</li>
+            <li>Alternance sur 2 ans</li>
+          </ul>
+        </div>
+
+        <div class="formation-card">
+          <div class="formation-card-header">
+            <div class="formation-icon">📋</div>
+            <div>
+              <div class="formation-card-title">Programme</div>
+              <div class="formation-card-sub">Formation complète</div>
+            </div>
+          </div>
+          <ul class="formation-list">
+            <li>Culture générale et expression</li>
+            <li>Culture Économique, Juridique et Managérial</li>
+            <li>Anglais technique</li>
+            <li>Mathématiques pour l'informatique</li>
+          </ul>
+        </div>
+
+        <div class="formation-card">
+          <div class="formation-card-header">
+            <div class="formation-icon">🎖️</div>
+            <div>
+              <div class="formation-card-title">Validation</div>
+              <div class="formation-card-sub">Diplôme d'État</div>
+            </div>
+          </div>
+          <ul class="formation-list">
+            <li>Niveau 5 (Bac+2)</li>
+            <li>120 crédits ECTS (60/an)</li>
+            <li>Certification professionnelle</li>
+          </ul>
+        </div>
       </div>
 
+      <!-- Compétences communes -->
+      <div class="competences-block">
+        <h3>Compétences communes</h3>
+        <div class="competences-grid">
+          <div class="competence-col">
+            <div class="competence-col-title">Support et assistance</div>
+            <ul>
+              <li>Gestion du patrimoine informatique</li>
+              <li>Réponse aux incidents</li>
+              <li>Développement de la présence en ligne</li>
+            </ul>
+          </div>
+          <div class="competence-col">
+            <div class="competence-col-title">Cybersécurité</div>
+            <ul>
+              <li>Protection des données</li>
+              <li>Sécurisation des équipements</li>
+              <li>Politique de sécurité</li>
+            </ul>
+          </div>
+          <div class="competence-col">
+            <div class="competence-col-title">Gestion de projet</div>
+            <ul>
+              <li>Analyse des besoins</li>
+              <li>Documentation technique</li>
+              <li>Travail en équipe</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Options SISR / SLAM -->
       <div class="options-grid">
         <!-- SISR -->
         <div class="option-card active">
-          <h3>Option SISR</h3>
-          <div class="opt-sub">Solutions d'Infrastructure, Systèmes et Réseaux</div>
-          <div class="opt-tags">
-            <span class="opt-tag">Réseaux & Infrastructures</span>
-            <span class="opt-tag">Cybersécurité</span>
-            <span class="opt-tag">Administration systèmes</span>
-            <span class="opt-tag">Virtualisation</span>
+          <span class="opt-badge">Option suivie</span>
+          <div class="option-card-header">
+            <div class="option-icon">🖧</div>
+            <div>
+              <h3>Option SISR</h3>
+              <div class="opt-sub">Solutions d'Infrastructure, Systèmes et Réseaux</div>
+            </div>
           </div>
-          <p class="opt-desc">
-            Forme aux métiers liés à la conception et la maintenance d'infrastructures réseaux, avec un focus important sur la cybersécurité et l'administration des systèmes.
-          </p>
+          <div class="option-sections">
+            <div class="option-section">
+              <div class="option-section-title">Compétences techniques</div>
+              <ul>
+                <li>Administration Windows</li>
+                <li>Administration Linux</li>
+                <li>Virtualisation</li>
+                <li>Réseaux TCP/IP</li>
+              </ul>
+            </div>
+            <div class="option-section">
+              <div class="option-section-title">Services et sécurité</div>
+              <ul>
+                <li>Active Directory</li>
+                <li>Pare-feu</li>
+                <li>VPN</li>
+                <li>Supervision</li>
+              </ul>
+            </div>
+            <div class="option-section single-col">
+              <div class="option-section-title">Débouchés professionnels</div>
+              <ul>
+                <li>Administrateur réseaux</li>
+                <li>Technicien support</li>
+                <li>Responsable infrastructure</li>
+                <li>Consultant cybersécurité</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <!-- SLAM -->
         <div class="option-card">
-          <h3>Option SLAM</h3>
-          <div class="opt-sub">Solutions Logicielles et Applications Métiers</div>
-          <div class="opt-tags">
-            <span class="opt-tag">Développement</span>
-            <span class="opt-tag">Bases de données</span>
-            <span class="opt-tag">Applications métiers</span>
-            <span class="opt-tag">Solutions de gestion</span>
+          <div class="option-card-header">
+            <div class="option-icon">&lt;/&gt;</div>
+            <div>
+              <h3>Option SLAM</h3>
+              <div class="opt-sub">Solutions Logicielles et Applications Métiers</div>
+            </div>
           </div>
-          <p class="opt-desc">
-            Prépare aux métiers du développement d'applications, avec des compétences en programmation et bases de données pour concevoir des solutions logicielles métiers.
-          </p>
+          <div class="option-sections">
+            <div class="option-section">
+              <div class="option-section-title">Compétences techniques</div>
+              <ul>
+                <li>Développement Web</li>
+                <li>Applications mobiles</li>
+                <li>Bases de données</li>
+                <li>Programmation objet</li>
+              </ul>
+            </div>
+            <div class="option-section">
+              <div class="option-section-title">Technologies</div>
+              <ul>
+                <li>Java, C#, Python</li>
+                <li>HTML, CSS, JavaScript</li>
+                <li>React, Angular</li>
+                <li>SQL, NoSQL</li>
+              </ul>
+            </div>
+            <div class="option-section single-col">
+              <div class="option-section-title">Débouchés professionnels</div>
+              <ul>
+                <li>Développeur d'applications</li>
+                <li>Développeur Web</li>
+                <li>Analyste programmeur</li>
+                <li>Chef de projet junior</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Stats -->
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Ans de formation</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Options disponibles</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Opportunités de carrière</div>
-        </div>
-      </div>
     </div>
   </section>
+
+  <div class="divider"></div>
+
+  <!-- COMPÉTENCES TECHNIQUES -->
+  <section id="competences">
+    <div class="container">
+      <p class="section-label">Savoir-faire</p>
+      <h2 class="section-title">Compétences Techniques</h2>
+
+      <!-- Bloc 1 : Support & Services -->
+      <div class="competences-section-block">
+        <div class="competences-section-header">
+          <div class="competences-section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e8873a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="competences-section-title">Support et mise à disposition des services informatiques</div>
+        </div>
+        <div class="comp-cards-grid">
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" fill="none" stroke="#00c2ff" stroke-width="1.8"/><path d="M8 21h8M12 17v4" stroke="#00c2ff" stroke-width="1.8" stroke-linecap="round"/><path d="M9 8h6M9 11h4" stroke="#00c2ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div class="comp-card-name">Windows Server</div>
+            </div>
+            <p class="comp-card-desc">Installation et configuration de services AD et DHCP. Gestion des utilisateurs, des droits et des GPO en environnement de TP et en entreprise.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1" fill="#00c2ff"/><rect x="13" y="3" width="8" height="8" rx="1" fill="#00c2ff"/><rect x="3" y="13" width="8" height="8" rx="1" fill="#00c2ff"/><rect x="13" y="13" width="8" height="8" rx="1" fill="#00c2ff"/></svg>
+              </div>
+              <div class="comp-card-name">Windows 10 / 11</div>
+            </div>
+            <p class="comp-card-desc">Expérience personnelle et professionnelle. Installation, configuration système, gestion des comptes utilisateurs et dépannage.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+              </div>
+              <div class="comp-card-name">Active Directory</div>
+            </div>
+            <p class="comp-card-desc">Création de comptes, groupes et stratégies de sécurité (GPO). Manipulation en environnement de TP et en entreprise.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <div class="comp-card-name">GLPI</div>
+            </div>
+            <p class="comp-card-desc">Utilisé en entreprise et en BTS. Gestion des tickets, inventaire du parc informatique et suivi des interventions.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              </div>
+              <div class="comp-card-name">Intune / MDM</div>
+            </div>
+            <p class="comp-card-desc">Enrôlement et gestion de postes et appareils mobiles (iPad, iPhone). Déploiement de profils et applications via MDM.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="comp-card-name">Workspace One</div>
+            </div>
+            <p class="comp-card-desc">Configuration des profils utilisateurs et intégration des appareils dans l'environnement réseau de l'entreprise.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+              </div>
+              <div class="comp-card-name">PDQ Deploy</div>
+            </div>
+            <p class="comp-card-desc">Déploiement et gestion automatisée de postes de travail. Utilisé en entreprise pour la distribution logicielle.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10h2l2-3 2 6 2-3h2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="comp-card-name">TeamViewer</div>
+            </div>
+            <p class="comp-card-desc">Prise en main à distance et assistance technique utilisateurs. Utilisé quotidiennement en environnement professionnel.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bloc 2 : Administration systèmes & réseaux -->
+      <div class="competences-section-block">
+        <div class="competences-section-header">
+          <div class="competences-section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e8873a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="8" y="14" width="8" height="8" rx="1"/><path d="M6 10v4M18 10v1M10 18h-4M14 18h4M18 11a3 3 0 0 1 0 6"/></svg>
+          </div>
+          <div class="competences-section-title">Administration des systèmes et des réseaux</div>
+        </div>
+        <div class="comp-cards-grid">
+
+          <div class="comp-card distrib-full">
+            <div class="comp-card-header">
+              <div class="comp-card-logo" style="background:rgba(232,135,58,.15); border-color:rgba(232,135,58,.3);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8873a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </div>
+              <div class="comp-card-name">Distributions Linux</div>
+            </div>
+            <div class="distrib-grid">
+              <div class="distrib-item">
+                <div class="distrib-logo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8873a" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+                </div>
+                <div>
+                  <div class="distrib-name">Ubuntu</div>
+                  <div class="distrib-desc">Utilisée en TP et en projets BTS. Installation, configuration de serveurs, gestion des services réseau.</div>
+                </div>
+              </div>
+              <div class="distrib-item">
+                <div class="distrib-logo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8873a" stroke-width="1.8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div>
+                  <div class="distrib-name">Debian</div>
+                  <div class="distrib-desc">Utilisée en environnement de TP. Serveurs LAMP, SSH, DNS. Appris dans le cadre du BTS.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="comp-card-name">Sécurité & Réseaux</div>
+            </div>
+            <p class="comp-card-desc">Gestion des réseaux, sécurisation des systèmes et participation aux projets d'évolution du SI en entreprise.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <div class="comp-card-name">macOS</div>
+            </div>
+            <p class="comp-card-desc">Administration système et support utilisateur sur environnement Mac en contexte professionnel.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <div class="comp-card-name">Grafana</div>
+            </div>
+            <p class="comp-card-desc">Supervision et monitoring des infrastructures. Visualisation des métriques systèmes et réseaux en temps réel.</p>
+          </div>
+
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <div class="comp-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div class="comp-card-name">Power BI</div>
+            </div>
+            <p class="comp-card-desc">Création de tableaux de bord et rapports visuels pour le suivi et l'analyse des données informatiques.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
 
   <!-- FOOTER -->
   <footer>
     <span>© 2025 Adelphe Borges-Silva · Portfolio BTS SIO SISR</span>
     <span>
-      <a href="/cdn-cgi/l/email-protection#74361b061311075a15101118041c11341319151d185a171b19"><span class="__cf_email__" data-cfemail="d496bba6b3b1a7fab5b0b1b8a4bcb194b3b9b5bdb8fab7bbb9">[
+      <a href="mailto:borges.adelphe@gmail.com">borges.adelphe@gmail.com</a>
+    </span>
+  </footer>
+
+</body>
+</html>
