@@ -344,6 +344,197 @@
     footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
     footer a:hover { color: var(--accent); }
 
+    /* ── À PROPOS ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Carte identité gauche */
+    .about-id-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      position: sticky;
+      top: 6rem;
+    }
+    .about-id-top {
+      background: linear-gradient(135deg, rgba(0,194,255,.15), rgba(110,231,183,.08));
+      padding: 2.5rem 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: #000;
+      margin: 0 auto 1rem;
+      border: 3px solid rgba(0,194,255,.4);
+    }
+    .about-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: .2rem;
+    }
+    .about-role {
+      font-size: .8rem;
+      color: var(--accent);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .about-id-body { padding: 1.5rem 2rem; }
+    .id-row {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .88rem;
+    }
+    .id-row:last-child { border-bottom: none; }
+    .id-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(0,194,255,.1);
+      border: 1px solid rgba(0,194,255,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .id-label { font-size: .72rem; color: var(--muted); display: block; margin-bottom: .1rem; letter-spacing: .05em; }
+    .id-value { color: var(--text); font-weight: 400; }
+    .id-value a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+    .id-value a:hover { opacity: .75; }
+
+    /* Contenu droite */
+    .about-content { display: flex; flex-direction: column; gap: 2rem; }
+
+    .about-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+    }
+    .about-block-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent2);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .about-block-title::before {
+      content: '';
+      display: block;
+      width: 18px; height: 2px;
+      background: var(--accent2);
+      border-radius: 2px;
+    }
+
+    /* Points forts */
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+    }
+    .strength-item {
+      background: rgba(0,194,255,.05);
+      border: 1px solid rgba(0,194,255,.15);
+      border-radius: 10px;
+      padding: .9rem 1.1rem;
+      font-size: .88rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .strength-item::before {
+      content: '✦';
+      color: var(--accent);
+      font-size: .7rem;
+      flex-shrink: 0;
+    }
+
+    /* Compétences */
+    .skills-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .skill-pill {
+      font-size: .8rem;
+      padding: .3rem .9rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: border-color .2s, color .2s;
+    }
+    .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .skill-pill.highlight { border-color: rgba(0,194,255,.4); color: var(--accent); }
+
+    /* Expériences timeline */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: flex;
+      gap: 1rem;
+      padding: .9rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+      flex-shrink: 0;
+      margin-top: .35rem;
+    }
+    .exp-company {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--text);
+      margin-bottom: .1rem;
+    }
+    .exp-title { font-size: .85rem; color: var(--muted); margin-bottom: .2rem; }
+    .exp-date {
+      font-size: .75rem;
+      color: var(--accent);
+      letter-spacing: .05em;
+    }
+
+    /* Centres d'intérêt */
+    .interests-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .interest-card {
+      flex: 1;
+      min-width: 120px;
+      background: rgba(110,231,183,.05);
+      border: 1px solid rgba(110,231,183,.15);
+      border-radius: 12px;
+      padding: 1.1rem 1rem;
+      text-align: center;
+      font-size: .85rem;
+    }
+    .interest-icon { font-size: 1.8rem; display: block; margin-bottom: .4rem; }
+    .interest-label { color: var(--text); font-weight: 400; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -352,6 +543,9 @@
       .stats { grid-template-columns: 1fr 1fr; }
       .bts-intro, .objectives { padding: 1.5rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-id-card { position: static; }
+      .strengths-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -362,6 +556,7 @@
     <div class="nav-logo">ABS ·</div>
     <ul class="nav-links">
       <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#apropos">À propos</a></li>
       <li><a href="#bts">BTS SIO</a></li>
       <li><a href="#">Réalisations</a></li>
       <li><a href="#">Contact</a></li>
@@ -386,6 +581,187 @@
     <div class="hero-cta">
       <a href="#bts" class="btn btn-primary">Découvrir le BTS SIO</a>
       <a href="#" class="btn btn-ghost">Voir mes réalisations</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- À PROPOS -->
+  <section id="apropos">
+    <div class="container">
+      <p class="section-label">Qui suis-je ?</p>
+      <h2 class="section-title">À propos de moi</h2>
+      <p class="section-desc">
+        Technicien informatique passionné, avec une solide expérience terrain et une formation orientée réseaux et infrastructure.
+      </p>
+
+      <div class="about-grid">
+
+        <!-- CARTE IDENTITÉ -->
+        <div class="about-id-card">
+          <div class="about-id-top">
+            <div class="about-avatar">AB</div>
+            <div class="about-name">Adelphe Borges-Silva</div>
+            <div class="about-role">Technicien IT · BTS SIO SISR</div>
+          </div>
+          <div class="about-id-body">
+            <div class="id-row">
+              <div class="id-icon">📍</div>
+              <div>
+                <span class="id-label">Localisation</span>
+                <span class="id-value">Gonesse, Île-de-France (95500)</span>
+              </div>
+            </div>
+            <div class="id-row">
+              <div class="id-icon">✉️</div>
+              <div>
+                <span class="id-label">Email</span>
+                <span class="id-value"><a href="mailto:borges.adelphe@gmail.com">borges.adelphe@gmail.com</a></span>
+              </div>
+            </div>
+            <div class="id-row">
+              <div class="id-icon">💻</div>
+              <div>
+                <span class="id-label">GitHub</span>
+                <span class="id-value"><a href="https://github.com/Ade-gns" target="_blank">github.com/Ade-gns</a></span>
+              </div>
+            </div>
+            <div class="id-row">
+              <div class="id-icon">🔗</div>
+              <div>
+                <span class="id-label">LinkedIn</span>
+                <span class="id-value"><a href="https://www.linkedin.com/in/adèlphe-borges-silva-b45936316" target="_blank">linkedin.com/in/adèlphe-borges-silva</a></span>
+              </div>
+            </div>
+            <div class="id-row">
+              <div class="id-icon">🎓</div>
+              <div>
+                <span class="id-label">Formation</span>
+                <span class="id-value">BTS SIO – Option SISR · H3 Hitema, Paris</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENU DROITE -->
+        <div class="about-content">
+
+          <!-- Présentation -->
+          <div class="about-block">
+            <div class="about-block-title">Présentation</div>
+            <p style="font-size:.97rem; color: var(--muted); line-height:1.8;">
+              Étudiant en <strong style="color:var(--text)">BTS SIO option SISR</strong> à H3 Hitema, je me spécialise dans l'administration des systèmes, des réseaux et de la sécurité informatique. Fort de plusieurs expériences en entreprise, j'ai développé une vraie polyvalence technique sur le terrain. Je suis autonome, réactif et rigoureux, avec un sens du service aux utilisateurs.
+            </p>
+          </div>
+
+          <!-- Points forts -->
+          <div class="about-block">
+            <div class="about-block-title">Points forts</div>
+            <div class="strengths-grid">
+              <div class="strength-item">Autonomie</div>
+              <div class="strength-item">Rigueur</div>
+              <div class="strength-item">Esprit d'équipe</div>
+              <div class="strength-item">Capacité d'adaptation</div>
+            </div>
+          </div>
+
+          <!-- Expériences -->
+          <div class="about-block">
+            <div class="about-block-title">Expériences</div>
+            <div class="exp-list">
+              <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div class="exp-body">
+                  <div class="exp-company">Fiducial</div>
+                  <div class="exp-title">Technicien Support de proximité</div>
+                  <div class="exp-date">Septembre 2025 – Présent</div>
+                </div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div class="exp-body">
+                  <div class="exp-company">AXA France</div>
+                  <div class="exp-title">Technicien Support Informatique</div>
+                  <div class="exp-date">Avril 2025 – Septembre 2025</div>
+                </div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div class="exp-body">
+                  <div class="exp-company">JDC – Aubervilliers</div>
+                  <div class="exp-title">Technicien Informatique</div>
+                  <div class="exp-date">Septembre 2024 – Mars 2025</div>
+                </div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div class="exp-body">
+                  <div class="exp-company">Lycée François Rabelais – Dugny</div>
+                  <div class="exp-title">Assistant d'Éducation & Référent Informatique</div>
+                  <div class="exp-date">Septembre 2022 – Août 2024</div>
+                </div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div class="exp-body">
+                  <div class="exp-company">Mairie de Gonesse</div>
+                  <div class="exp-title">Technicien Informatique – DSI (Apprentissage)</div>
+                  <div class="exp-date">Septembre 2020 – Août 2022</div>
+                </div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div class="exp-body">
+                  <div class="exp-company">Paradisia</div>
+                  <div class="exp-title">Technicien Informatique (Stage)</div>
+                  <div class="exp-date">Février 2020 – Avril 2020</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compétences techniques -->
+          <div class="about-block">
+            <div class="about-block-title">Compétences techniques</div>
+            <div class="skills-list">
+              <span class="skill-pill highlight">Windows Server</span>
+              <span class="skill-pill highlight">Active Directory</span>
+              <span class="skill-pill highlight">Intune / Workspace One</span>
+              <span class="skill-pill highlight">Réseaux & infrastructure</span>
+              <span class="skill-pill">Linux</span>
+              <span class="skill-pill">macOS</span>
+              <span class="skill-pill">GLPI</span>
+              <span class="skill-pill">PDQ Deploy</span>
+              <span class="skill-pill">TeamViewer</span>
+              <span class="skill-pill">Grafana</span>
+              <span class="skill-pill">Power BI</span>
+              <span class="skill-pill">Cybersécurité</span>
+              <span class="skill-pill">Virtualisation</span>
+              <span class="skill-pill">MDM (iOS)</span>
+            </div>
+          </div>
+
+          <!-- Centres d'intérêt -->
+          <div class="about-block">
+            <div class="about-block-title">Centres d'intérêt</div>
+            <div class="interests-row">
+              <div class="interest-card">
+                <span class="interest-icon">💻</span>
+                <span class="interest-label">Informatique</span>
+              </div>
+              <div class="interest-card">
+                <span class="interest-icon">📜</span>
+                <span class="interest-label">Histoire</span>
+              </div>
+              <div class="interest-card">
+                <span class="interest-icon">⚽</span>
+                <span class="interest-label">Sport</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </section>
 
@@ -467,11 +843,4 @@
   <footer>
     <span>© 2025 Adelphe Borges-Silva · Portfolio BTS SIO SISR</span>
     <span>
-      <a href="mailto:Borges.adelphe@gmail.com">Borges.adelphe@gmail.com</a>
-      &nbsp;·&nbsp;
-      <a href="tel:0752918808">07 52 91 88 08</a>
-    </span>
-  </footer>
-
-</body>
-</html>
+      <a href="/cdn-cgi/l/email-protection#74361b061311075a15101118041c11341319151d185a171b19"><span class="__cf_email__" data-cfemail="d496bba6b3b1a7fab5b0b1b8a4bcb194b3b9b5bdb8fab7bbb9">[
