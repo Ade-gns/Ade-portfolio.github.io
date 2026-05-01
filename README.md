@@ -97,7 +97,7 @@ Aucune dépendance requise — le projet est en HTML/CSS vanilla.
 
 Ce portfolio a été conçu pour :
 - Présenter mon parcours et mes compétences en informatique
-- Valider le diplôme **BTS SIO SISR** à H3 Hitema
+- Valider le diplôme **BTS SIO SISR**
 - Servir de vitrine professionnelle pour mes futures candidatures
 
 ---
