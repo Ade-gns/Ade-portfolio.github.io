@@ -265,12 +265,10 @@
              data-desc="Déploiement d'une VM Debian sous VMware, configuration réseau NAT, gestion utilisateurs, groupes et permissions Unix."
              data-icon="🐧"
              data-color="linear-gradient(160deg,#22c55e 40%,#15803d 80%)"
-             data-pdf="TP_Debian_Marvel_v2.pdf">
+             data-pdf="TP_Debian_Marvel_v2.pdf"
+             data-preview="logos/debian.svg">
           <div class="projet-visual" style="background:linear-gradient(160deg,#22c55e 40%,#15803d 80%);">
-            <div class="projet-placeholder">
-              <div class="projet-placeholder-icon">🐧</div>
-              <span>TP Linux – Administration Debian</span>
-            </div>
+            <img src="logos/debian.svg" alt="Debian" class="projet-thumb">
           </div>
           <div class="projet-info">
             <h3>TP Linux – Administration Debian</h3>
@@ -300,12 +298,10 @@
              data-desc="Installation complète de GLPI 9.5.6 sur serveur Linux : stack LAMP, MariaDB, configuration Apache et sécurisation."
              data-icon="📋"
              data-color="linear-gradient(160deg,#1d4ed8 40%,#0369a1 80%)"
-             data-pdf="Procedure_Installation_GLPI_corrigee(1).pdf">
+             data-pdf="Procedure_Installation_GLPI_corrigee(1).pdf"
+             data-preview="logos/glpi.svg">
           <div class="projet-visual" style="background:linear-gradient(160deg,#1d4ed8 40%,#0369a1 80%);">
-            <div class="projet-placeholder">
-              <div class="projet-placeholder-icon">📋</div>
-              <span>Procédure d'installation GLPI</span>
-            </div>
+            <img src="logos/glpi.svg" alt="GLPI" class="projet-thumb">
           </div>
           <div class="projet-info">
             <h3>Procédure d'installation GLPI</h3>
@@ -336,12 +332,10 @@
              data-desc="Installation complète de phpMyAdmin sur serveur Linux : Apache, MariaDB sécurisée, configuration et dépannage Apache."
              data-icon="🗄️"
              data-color="linear-gradient(160deg,#f97316 40%,#b45309 80%)"
-             data-pdf="Procedure_Installation_phpMyAdmin_corrigee.pdf">
+             data-pdf="Procedure_Installation_phpMyAdmin_corrigee.pdf"
+             data-preview="logos/phpmyadmin.svg">
           <div class="projet-visual" style="background:linear-gradient(160deg,#f97316 40%,#b45309 80%);">
-            <div class="projet-placeholder">
-              <div class="projet-placeholder-icon">🗄️</div>
-              <span>Procédure d'installation phpMyAdmin</span>
-            </div>
+            <img src="logos/phpmyadmin.svg" alt="phpMyAdmin" class="projet-thumb">
           </div>
           <div class="projet-info">
             <h3>Procédure d'installation phpMyAdmin</h3>
@@ -372,12 +366,10 @@
              data-desc="Migration complète d'un serveur GLPI obsolète vers une nouvelle infrastructure Linux/Ubuntu avec sauvegarde, réinstallation et configuration réseau."
              data-icon="🔄"
              data-color="linear-gradient(160deg,#7c3aed 40%,#4f46e5 80%)"
-             data-pdf="Migration_GLPI_complete.pdf">
+             data-pdf="Migration_GLPI_complete.pdf"
+             data-preview="logos/glpi.svg">
           <div class="projet-visual" style="background:linear-gradient(160deg,#7c3aed 40%,#4f46e5 80%);">
-            <div class="projet-placeholder">
-              <div class="projet-placeholder-icon">🔄</div>
-              <span>Migration serveur GLPI 9.3.1 → 9.5.6</span>
-            </div>
+            <img src="logos/glpi.svg" alt="GLPI" class="projet-thumb">
           </div>
           <div class="projet-info">
             <h3>Migration serveur GLPI 9.3.1 → 9.5.6</h3>
@@ -408,12 +400,10 @@
              data-desc="Installation d'OCS Inventory NG sur Ubuntu 20.04 : stack LAMP, modules Perl/CPAN, base MariaDB dédiée et interface ocsreports."
              data-icon="🖥️"
              data-color="linear-gradient(160deg,#0d9488 40%,#0369a1 80%)"
-             data-pdf="Procedure_Installation_OCS_corrigee.pdf">
+             data-pdf="Procedure_Installation_OCS_corrigee.pdf"
+             data-preview="logos/ocs.svg">
           <div class="projet-visual" style="background:linear-gradient(160deg,#0d9488 40%,#0369a1 80%);">
-            <div class="projet-placeholder">
-              <div class="projet-placeholder-icon">🖥️</div>
-              <span>Procédure d'installation OCS Inventory NG</span>
-            </div>
+            <img src="logos/ocs.svg" alt="OCS Inventory NG" class="projet-thumb">
           </div>
           <div class="projet-info">
             <h3>Procédure d'installation OCS Inventory NG</h3>
@@ -445,12 +435,10 @@
              data-desc="Procédure double : installation fraîche et migration depuis GLPI 9.5.x/10.0.x. PHP 8.3, MariaDB 10.6+, VirtualHost Apache avec DocumentRoot /public."
              data-icon="⚡"
              data-color="linear-gradient(160deg,#0891b2 40%,#6d28d9 80%)"
-             data-pdf="GLPI_11.0.7_Installation_Migration.pdf">
+             data-pdf="GLPI_11.0.7_Installation_Migration.pdf"
+             data-preview="logos/glpi.svg">
           <div class="projet-visual" style="background:linear-gradient(160deg,#0891b2 40%,#6d28d9 80%);">
-            <div class="projet-placeholder">
-              <div class="projet-placeholder-icon">⚡</div>
-              <span>GLPI 11.0.7 – Installation & Migration</span>
-            </div>
+            <img src="logos/glpi.svg" alt="GLPI 11.0.7" class="projet-thumb">
           </div>
           <div class="projet-info">
             <h3>GLPI 11.0.7 – Installation & Migration</h3>
@@ -670,13 +658,18 @@ document.querySelectorAll('.projet-card').forEach(card => {
   card.addEventListener('mouseenter', () => {
     const preview = document.querySelector('.projet-preview-placeholder');
     const previewTitle = document.querySelector('.projet-preview-top h3');
-    const color = card.dataset.color || 'rgba(255,255,255,.03)';
     const title = card.dataset.title || 'Aperçu du projet';
-    const icon = card.dataset.icon || '🗂️';
+    const previewImg = card.dataset.preview;
     const pdf = card.dataset.pdf;
     if (preview) {
-      preview.style.background = color;
-      preview.innerHTML = `<div style="font-size:3rem;">${icon}</div>${pdf ? `<a href="${pdf}" target="_blank" style="font-size:.82rem;color:#818cf8;text-decoration:none;margin-top:.5rem;">Voir le document →</a>` : ''}`;
+      preview.style.background = '';
+      if (previewImg) {
+        preview.innerHTML = `<img src="${previewImg}" alt="${title}" style="width:85%;border-radius:.8rem .8rem 0 0;border:1.5px solid rgba(255,255,255,.15);display:block;margin:0 auto;object-fit:cover;">${pdf ? `<a href="${pdf}" target="_blank" style="font-size:.82rem;color:#818cf8;text-decoration:none;margin-top:.8rem;display:block;text-align:center;">Voir le document →</a>` : ''}`;
+      } else {
+        const icon = card.dataset.icon || '🗂️';
+        preview.style.background = card.dataset.color || '';
+        preview.innerHTML = `<div style="font-size:3rem;">${icon}</div>${pdf ? `<a href="${pdf}" target="_blank" style="font-size:.82rem;color:#818cf8;text-decoration:none;margin-top:.5rem;">Voir le document →</a>` : ''}`;
+      }
     }
     if (previewTitle) previewTitle.textContent = title;
   });
