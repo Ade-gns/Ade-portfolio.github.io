@@ -1,502 +1,438 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Portfolio – Adelphe Borges-Silva | BTS SIO SISR</title>
-  <meta name="description" content="Portfolio BTS SIO SISR d'Adelphe Borges-Silva, technicien IT en alternance à H3 Hitema Paris."/>
-  <meta name="author" content="Adelphe Borges-Silva"/>
-  <link href="https://fonts.googleapis.com/css2?family=Causten:wght@500;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/style.css"/>
-  <style>
-    /* Styles critiques pour l'effet d'apparition des mots (Intro) */
-    .fade-word {
-      opacity: 0.1; /* Plus discret par défaut */
-      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s ease;
-      display: inline-block;
-      margin-right: 0.25rem;
-      will-change: opacity; /* Optimisation performance */
-    }
-    .fade-word.visible {
-      opacity: 1;
-      color: #fff;
-    }
-  </style>
-</head>
-<body>
-<div class="scroll-progress" aria-hidden="true"></div>
-<!-- ── NAV ── -->
-<nav class="main-nav">
-  <ul class="nav-links">
-    <li><a href="#accueil" class="active">Accueil</a></li>
+<html lang="fr"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <title>Portfolio – Adelphe Borges-Silva | BTS SIO SISR</title> 
+  <meta name="description" content="Portfolio BTS SIO SISR d'Adelphe Borges-Silva, technicien IT en alternance à H3 Hitema Paris."> 
+  <meta name="author" content="Adelphe Borges-Silva"> 
+  <link href="https://fonts.googleapis.com/css2?family=Causten:wght@500;700&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/style.css"> 
+</head> 
+<body> 
+<div class="scroll-progress" aria-hidden="true"></div> 
+<!-- ── NAV ── --> 
+<nav class="main-nav"> 
+  <ul class="nav-links"> 
+    <li><a href="#accueil" class="active">Accueil</a></li> 
     <li><a href="#formation">Formation</a></li>
-    <li><a href="#profil">Profil</a></li>
-    <li><a href="#competences">Compétences</a></li>
-    <li><a href="#projets">Projets</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#veille">Veilles</a></li>
-  </ul>
-  <div class="nav-sep"></div>
-  <a href="CV_Adelphe_Borges-Silva.pdf" download class="nav-cta"><span>Télécharger le CV</span></a>
-</nav>
-
-<!-- ── ACCUEIL ── -->
-<section id="accueil">
-  <div class="container">
-    <a href="https://www.linkedin.com/in/ad%C3%A8lphe-borges-silva-b45936316/" target="_blank" rel="noopener noreferrer" class="hero-tag" style="text-decoration:none;">
-      <span>Voir mon profil LinkedIn</span>
-      <div class="hero-tag-arrow">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(168,129,255,.9)" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </div>
-    </a>
-    <h1 class="hero-h1">
-      Le Portfolio<br>
-      <span class="grad">d'un Technicien IT.</span>
-    </h1>
-    <p class="hero-sub">
-      Bonjour, je suis <strong>Adelphe Borges-Silva</strong>,<br>
-      étudiant en BTS SIO option <strong>SISR</strong> à Paris.
-    </p>
-    <div class="hero-btns">
-      <a href="#projets" class="btn-pill btn-outline">Voir mes projets →</a>
-      <a href="#profil" class="btn-pill btn-solid">Découvrir mon profil</a>
-      <a href="CV_Adelphe_Borges-Silva.pdf" download class="btn-pill btn-outline" style="font-size:.85rem;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-        Télécharger mon CV
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ── INTRO ── -->
-<section id="intro" style="min-height:auto;padding:8rem 2rem;">
-  <div class="intro-text">
-    <span>L'informatique ne se limite pas à des lignes de code, </span>
-    <span id="scroll-words">
-      <span class="fade-word">Derrière </span>
-      <span class="fade-word">chaque </span>
-      <span class="fade-word">connexion </span>
-      <span class="fade-word">stable </span>
-      <span class="fade-word">se </span>
-      <span class="fade-word">cache </span>
-      <span class="fade-word">une </span>
-      <span class="fade-word">architecture </span>
-      <span class="fade-word">pensée, </span>
-      <span class="fade-word">configurée </span>
-      <span class="fade-word">et </span>
-      <span class="fade-word">sécurisée. </span>
-      <span class="fade-word">En </span>
-      <span class="fade-word">BTS </span>
-      <span class="fade-word">SIO </span>
-      <span class="fade-word">option </span>
-      <span class="fade-word">SISR, </span>
-      <span class="fade-word">je </span>
-      <span class="fade-word">construis </span>
-      <span class="fade-word">les </span>
-      <span class="fade-word">fondations </span>
-      <span class="fade-word">invisibles </span>
-      <span class="fade-word">sur </span>
-      <span class="fade-word">lesquelles </span>
-      <span class="fade-word">repose </span>
-      <span class="fade-word">le </span>
-      <span class="fade-word">numérique. </span>
-    </span>
-    <span class="intro-cta grad-blue">Découvrons les deux spécialités du BTS.</span>
-  </div>
-</section>
-
-<!-- ── FORMATION ── -->
-<section id="formation">
-  <div class="container">
-    <div class="formation-header">
-      <div class="section-badge"><span class="badge-star">✶</span> <span>Parcours Académique</span></div>
-      <h2 class="formation-h2">Ma formation, le <span class="grad">BTS SIO</span>.</h2>
-      <p class="formation-sub">Une formation technique en informatique, se divisant en deux spécialités.</p>
-    </div>
-
-    <div class="options-grid">
-      <div class="option-card slam">
-        <div class="option-inner">
-          <div class="option-label">SLAM</div>
-          <h3 class="option-title">Solutions Logicielles et Applications Métiers</h3>
-          <p class="option-desc">Cette spécialisation se concentre sur la conception, le développement et la maintenance d'applications informatiques.</p>
-          <ul class="option-list">
-            <li>Développement d'applications web et mobiles</li>
-            <li>Cycle de vie, de la conception à la mise en production</li>
-            <li>Programmation orientée objet et architecture logicielle</li>
-            <li>Gestion de bases de données relationnelles et NoSQL</li>
-            <li>Optimisation des performances des applications</li>
-          </ul>
-        </div>
-      </div>
-      <div class="option-card sisr">
-        <span class="option-badge">Mon option ✓</span>
-        <div class="option-inner">
-          <div class="option-label">SISR</div>
-          <h3 class="option-title">Solutions d'Infrastructure, Systèmes et Réseaux</h3>
-          <p class="option-desc">La spécialisation SISR est centrée sur l'administration des infrastructures réseaux et systèmes.</p>
-          <ul class="option-list">
-            <li>Sécurisation des systèmes et des réseaux</li>
-            <li>Virtualisation des infrastructures et gestion de serveurs</li>
-            <li>Administration des réseaux, systèmes et bases de données</li>
-            <li>Maintenance préventive et gestion des incidents</li>
-            <li>Mise en place de solutions de sauvegarde / récupération</li>
-            <li>Gestion des solutions d'infrastructures réseaux complexes</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="formation-stats">
-      <div class="stat-card"><div class="stat-icon">🕐</div><div class="stat-title">Durée</div><div class="stat-val">2 ans · 1 350h de cours</div></div>
-      <div class="stat-card"><div class="stat-icon">🔄</div><div class="stat-title">Rythme alternance</div><div class="stat-val">3j entreprise / 2j formation</div></div>
-      <div class="stat-card"><div class="stat-icon">🎓</div><div class="stat-title">Validation</div><div class="stat-val">Diplôme d'État · Niveau 5 (Bac+2)</div></div>
-    </div>
-
-    <div class="formation-quote">
-      Deux spécialisations différentes pour une expertise <strong>concrète</strong> et <strong>opérationnelle.</strong><br>
-      Le BTS SIO ouvre la voie à des carrières diversifiées dans un secteur en pleine évolution.
-    </div>
-  </div>
-</section>
-
-<!-- ── PROFIL ── -->
-<section id="profil">
-  <div class="container">
-    <div class="text-center" style="margin-bottom:3rem;">
-      <div class="section-badge"><span class="badge-star">✶</span> <span>PROFIL</span></div>
-      <h2 style="font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:-.02em;">
-        Découvrez mon <span class="grad-blue">profil</span>.
-      </h2>
-      <p style="color:rgba(255,255,255,.4);margin-top:.8rem;">Obtenez un aperçu rapide de mon parcours et de mes compétences.</p>
-    </div>
-
-    <div class="profil-wrap">
-      <div class="profil-card-outer">
-        <div class="profil-card-inner">
-          <div class="profil-top">
-            <div class="profil-avatar">AB</div>
-            <div>
-              <div class="profil-name">Adelphe <span class="profil-name-blue">BORGES-SILVA</span></div>
-              <div class="profil-role">Apprenti BTS SIO SISR · H3 Hitema · Fiducial</div>
-            </div>
-          </div>
-          <div class="profil-body">
-            <div class="profil-col">
-              <div class="profil-col-title">Informations</div>
-              <div class="profil-info-list">
-                <div class="profil-info-row">📍 Gonesse (95500)</div>
-                <div class="profil-info-row">✉️ <a href="mailto:adelphe.bsilva@gmail.com">adelphe.bsilva@gmail.com</a></div>
-                <div class="profil-info-row">💻 github.com/Ade-gns</div>
-                <div class="profil-info-row">🔗 linkedin.com/in/adèlphe-borges-silva</div>
-                <div class="profil-info-row">🎓 H3 Hitema, Paris</div>
-              </div>
-            </div>
-            <div class="profil-col">
-              <div class="profil-col-title">Expérience</div>
-              <div class="profil-exp-list">
-                <div><div class="profil-exp-co">Fiducial</div><div class="profil-exp-role">Technicien Support de proximité</div><div class="profil-exp-date">Sept. 2025 – Présent</div></div>
-                <div><div class="profil-exp-co">AXA France</div><div class="profil-exp-role">Technicien Support Informatique</div><div class="profil-exp-date">Avr. 2025 – Sept. 2025</div></div>
-                <div><div class="profil-exp-co">JDC – Aubervilliers</div><div class="profil-exp-role">Technicien Informatique</div><div class="profil-exp-date">Sept. 2024 – Mars 2025</div></div>
-                <div><div class="profil-exp-co">Mairie de Gonesse</div><div class="profil-exp-role">Technicien Informatique DSI</div><div class="profil-exp-date">Sept. 2020 – Août 2022</div></div>
-                <div><div class="profil-exp-co">Paradisia</div><div class="profil-exp-role">Technicien Informatique (Stage)</div><div class="profil-exp-date">Fév. 2020 – Avr. 2020</div></div>
-                <div><div class="profil-exp-co">Paradisia</div><div class="profil-exp-role">Technicien Informatique (Stage)</div><div class="profil-exp-date">Nov. 2018 – Jan. 2019</div></div>
-              </div>
-            </div>
-          </div>
-          <div class="profil-strengths">
-            <div class="profil-str">Autonomie</div>
-            <div class="profil-str">Rigueur</div>
-            <div class="profil-str">Esprit d'équipe</div>
-            <div class="profil-str">Capacité d'adaptation</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── COMPETENCES ── -->
-<section id="competences">
-  <div class="container">
-    <div class="comp-layout">
-      <div>
-        <div class="comp-badge"><div class="section-badge"><span class="badge-star">✶</span> <span>OUTILS</span></div></div>
-        <h2 class="comp-h2">L'arsenal technique qui fait toute la <span class="grad">différence</span>.</h2>
-        <p class="comp-desc">Ces outils sont au cœur de mon quotidien en entreprise et en formation. Je les utilise pour administrer, déployer, sécuriser et superviser des infrastructures informatiques.</p>
-      </div>
-      <div class="comp-scroll-wrap">
-        <div class="comp-scroll-col">
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🪟</div><h3 class="comp-card-tool-name">Windows Server</h3><p class="comp-card-tool-desc">Installation, AD, DHCP, GPO en TP et entreprise.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🐧</div><h3 class="comp-card-tool-name">Linux</h3><p class="comp-card-tool-desc">Debian, Ubuntu – LAMP, SSH, DNS, administration système.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">📋</div><h3 class="comp-card-tool-name">GLPI</h3><p class="comp-card-tool-desc">Tickets, inventaire et suivi des interventions.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">📱</div><h3 class="comp-card-tool-name">Intune / MDM</h3><p class="comp-card-tool-desc">Enrôlement et gestion d'appareils mobiles iOS.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">☁️</div><h3 class="comp-card-tool-name">Workspace One</h3><p class="comp-card-tool-desc">Profils utilisateurs et intégration réseau entreprise.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">📊</div><h3 class="comp-card-tool-name">Grafana</h3><p class="comp-card-tool-desc">Supervision et monitoring d'infrastructures.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🔒</div><h3 class="comp-card-tool-name">Sécurité Réseaux</h3><p class="comp-card-tool-desc">Sécurisation des systèmes et gestion des risques.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🖥️</div><h3 class="comp-card-tool-name">PDQ Deploy</h3><p class="comp-card-tool-desc">Déploiement automatisé de postes de travail.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">💻</div><h3 class="comp-card-tool-name">VMware</h3><p class="comp-card-tool-desc">Création et gestion de machines virtuelles, déploiement en production.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🌐</div><h3 class="comp-card-tool-name">Apache2</h3><p class="comp-card-tool-desc">Configuration de serveurs web, VirtualHost, mod_rewrite et modules PHP.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🗄️</div><h3 class="comp-card-tool-name">MariaDB / MySQL</h3><p class="comp-card-tool-desc">Création et administration de bases de données SQL, sécurisation et import/export.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🐘</div><h3 class="comp-card-tool-name">PHP</h3><p class="comp-card-tool-desc">Déploiement d'applications web, configuration php.ini, extensions serveur.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">📦</div><h3 class="comp-card-tool-name">OCS Inventory NG</h3><p class="comp-card-tool-desc">Inventaire automatique du parc informatique, agents et intégration GLPI.</p></div>
-          <div class="comp-card-tool"><div class="comp-card-tool-icon">🔵</div><h3 class="comp-card-tool-name">phpMyAdmin</h3><p class="comp-card-tool-desc">Interface web d'administration des bases de données MariaDB/MySQL.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROJETS ── -->
-<section id="projets">
-  <div class="container">
-    <div class="projets-header">
-      <div class="section-badge"><span class="badge-star">✶</span> <span>PROJETS</span></div>
-      <h2 class="projets-h2">Du concept à la <span class="grad">réalité</span>.</h2>
-      <p style="color:rgba(255,255,255,.4);margin-bottom:3rem;">Découvrez les projets que j'ai réalisés au fil de mon parcours.</p>
-    </div>
-
-    <div class="projets-grid">
-      <!-- Projet 1 -->
-      <a href="TP_Debian_Marvel_v2.pdf" target="_blank" class="projet-card-new">
-        <span class="card-status">Terminé</span>
-        <div class="card-main">
-          <img src="logos/debian.svg" alt="Debian" class="card-img">
-        </div>
-        <div class="card-footer">
-          <div class="card-title-wrap">
-            <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-            <span class="card-title">TP Linux – Administration Debian</span>
-          </div>
-        </div>
-        <span class="card-year">2024</span>
-        <div class="card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-      </a>
-
-      <!-- Projet 2 -->
-      <a href="Procedure_Installation_GLPI_corrigee(1).pdf" target="_blank" class="projet-card-new">
-        <span class="card-status">Terminé</span>
-        <div class="card-main">
-          <img src="logos/glpi.svg" alt="GLPI" class="card-img">
-        </div>
-        <div class="card-footer">
-          <div class="card-title-wrap">
-            <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-            <span class="card-title">Mise en place de GLPI</span>
-          </div>
-        </div>
-        <span class="card-year">2022</span>
-        <div class="card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-      </a>
-
-      <!-- Projet 3 -->
-      <a href="Procedure_Installation_phpMyAdmin_corrigee.pdf" target="_blank" class="projet-card-new">
-        <span class="card-status">Terminé</span>
-        <div class="card-main">
-          <img src="logos/phpmyadmin.svg" alt="phpMyAdmin" class="card-img">
-        </div>
-        <div class="card-footer">
-          <div class="card-title-wrap">
-            <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-            <span class="card-title">Réalisation phpMyAdmin</span>
-          </div>
-        </div>
-        <span class="card-year">2021</span>
-        <div class="card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-      </a>
-
-      <!-- Projet 4 -->
-      <a href="Migration_GLPI_complete.pdf" target="_blank" class="projet-card-new">
-        <span class="card-status">Terminé</span>
-        <div class="card-main">
-          <img src="logos/glpi.svg" alt="Migration GLPI" class="card-img">
-        </div>
-        <div class="card-footer">
-          <div class="card-title-wrap">
-            <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-            <span class="card-title">Migration serveur GLPI</span>
-          </div>
-        </div>
-        <span class="card-year">2021</span>
-        <div class="card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-      </a>
-
-      <!-- Projet 5 -->
-      <a href="Procedure_Installation_OCS_corrigee.pdf" target="_blank" class="projet-card-new">
-        <span class="card-status">Terminé</span>
-        <div class="card-main">
-          <img src="logos/ocs.svg" alt="OCS Inventory" class="card-img">
-        </div>
-        <div class="card-footer">
-          <div class="card-title-wrap">
-            <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-            <span class="card-title">Installation OCS Inventory</span>
-          </div>
-        </div>
-        <span class="card-year">2021</span>
-        <div class="card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-      </a>
-
-      <!-- Projet 6 -->
-      <a href="GLPI_11.0.7_Installation_Migration.pdf" target="_blank" class="projet-card-new">
-        <span class="card-status">Terminé</span>
-        <div class="card-main">
-          <img src="logos/glpi.svg" alt="GLPI 11" class="card-img">
-        </div>
-        <div class="card-footer">
-          <div class="card-title-wrap">
-            <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-            <span class="card-title">GLPI 11 – Installation & Migration</span>
-          </div>
-        </div>
-        <span class="card-year">2025</span>
-        <div class="card-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ── CERTIFICATIONS ── -->
-<section id="certifications">
-  <div class="container">
-    <div class="certif-header">
-      <div class="section-badge"><span class="badge-star">✶</span> <span>CERTIFICATIONS</span></div>
-      <h2 class="certif-h2">Mes <span class="grad-green">certifications</span>.</h2>
-      <p style="color:rgba(255,255,255,.4);">Découvrez les certifications que j'ai obtenues au fil de mon parcours.</p>
-    </div>
-    <div class="certif-carousel">
-      <button class="certif-nav" onclick="changeCertif(-1)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-      </button>
-      <div class="certif-circle empty" id="certif-circle" style="background:linear-gradient(160deg,#6DD5FA 40%,#2980B9 80%);">
-        <span id="certif-icon">📦</span>
-      </div>
-      <button class="certif-nav" onclick="changeCertif(1)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </button>
-    </div>
-    <div class="certif-info empty" id="certif-info">
-      <h2 id="certif-title">À remplir</h2>
-      <p id="certif-desc">Nom et description de la certification à ajouter ici.</p>
-    </div>
-</section>
-
-<!-- ── VEILLE ── -->
-<!-- Article 1 : GitHub Copilot -->
-<a href="https://github.blog/changelog/" target="_blank" rel="noopener noreferrer" class="article-card">
-  <div class="article-tag">Développement</div>
-  <h3 class="article-title">GitHub Copilot : l'arrivée de l'agent de code IA autonome</h3>
-  <p class="article-desc">
-    GitHub déploie en 2025 son nouvel agent de code capable d'automatiser
-    l'ajout de fonctionnalités, la correction de bugs et la création de tests.
-    Le protocole MCP (Model Context Protocol) ouvre Copilot à un écosystème
-    d'outils IA plus large, redéfinissant le workflow des développeurs.
-  </p>
-  <div class="article-meta">
-    <span class="article-source">GitHub Blog</span>
-    <span class="article-date">2025</span>
-  </div>
-  <span class="article-link">Lire l'article →</span>
-</a>
-
-<!-- Article 2 : Linux Kernel 6.13 -->
-<a href="https://www.omgubuntu.co.uk/2025/01/linux-kernel-6-13-release-features" target="_blank" rel="noopener noreferrer" class="article-card">
-  <div class="article-tag">Linux</div>
-  <h3 class="article-title">Noyau Linux 6.13 : préemption paresseuse et +45 % de débit réseau</h3>
-  <p class="article-desc">
-    Sortie le 19 janvier 2025, la nouvelle version du kernel apporte la
-    « lazy preemption », une optimisation réseau spectaculaire (+45 % de
-    débit, -30 % de consommation), de nouveaux pilotes Rust et le support
-    des CPU Intel Panther Lake et AMD EPYC 9005.
-  </p>
-  <div class="article-meta">
-    <span class="article-source">OMG! Ubuntu</span>
-    <span class="article-date">Jan. 2025</span>
-  </div>
-  <span class="article-link">Lire l'article →</span>
-</a>
-
-<!-- Article 3 : Windows Server 2025 -->
-<a href="https://www.it-connect.fr/windows-server-2025-est-disponible-quelles-sont-les-nouveautes/" target="_blank" rel="noopener noreferrer" class="article-card">
-  <div class="article-tag">Windows Server</div>
-  <h3 class="article-title">Windows Server 2025 : hotpatching, Azure Arc et plateforme IA</h3>
-  <p class="article-desc">
-    Disponible depuis novembre 2024, Windows Server 2025 (LTSC, support
-    jusqu'en 2034) introduit le hotpatching en direct pour réduire les
-    redémarrages, le partitionnement GPU pour les charges IA, une
-    intégration Azure Arc native et une UI alignée sur Windows 11.
-  </p>
-  <div class="article-meta">
-    <span class="article-source">IT-Connect</span>
-    <span class="article-date">Nov. 2024</span>
-  </div>
-  <span class="article-link">Lire l'article →</span>
-</a>
-
-<!-- Article 4 : Windows 11 25H2 -->
-<a href="https://learn.microsoft.com/fr-fr/windows/whats-new/whats-new-windows-11-version-25h2" target="_blank" rel="noopener noreferrer" class="article-card">
-  <div class="article-tag">Windows</div>
-  <h3 class="article-title">Windows 11 25H2 : Wi-Fi 7, Sudo et fin de PowerShell 2.0</h3>
-  <p class="article-desc">
-    La mise à jour 25H2 partage la base de code de 24H2 et déploie
-    Sudo for Windows, le support Wi-Fi 7 entreprise, la sauvegarde
-    Windows pour organisations et la suppression définitive de
-    PowerShell 2.0 et WMIC, marquant un tournant sécuritaire.
-  </p>
-  <div class="article-meta">
-    <span class="article-source">Microsoft Learn</span>
-    <span class="article-date">2025</span>
-  </div>
-  <span class="article-link">Lire l'article →</span>
-</a>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-top-line"></div>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-name">Adelphe <span class="grad">BORGES-SILVA</span></div>
-      <div class="footer-sub">Portfolio BTS SIO SISR</div>
-    </div>
-    <div>
-      <div class="footer-nav-title">Navigation</div>
-      <nav class="footer-nav">
-        <a href="#accueil">Accueil</a>
-        <a href="#formation">Formation</a>
-        <a href="#profil">Profil</a>
-        <a href="#projets">Projets</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#veille">Veilles</a>
-      </nav>
-    </div>
-    <div>
-      <div class="footer-social-title">Me suivre</div>
-      <div class="footer-socials">
-        <a href="https://www.linkedin.com/in/adèlphe-borges-silva-b45936316" target="_blank" class="social-btn" title="LinkedIn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://github.com/Ade-gns" target="_blank" class="social-btn" title="GitHub">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-        </a>
-        <a href="mailto:adelphe.bsilva@gmail.com" class="social-btn" title="Email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </a>
-  <div class="footer-copy">© 2025 Adelphe Borges-Silva. Tous droits réservés.</div>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
+    <li><a href="#profil">Profil</a></li> 
+    <li><a href="#competences">Compétences</a></li> 
+    <li><a href="#projets">Projets</a></li> 
+    <li><a href="#certifications">Certifications</a></li> 
+    <li><a href="#veille">Veilles</a></li> 
+  </ul> 
+  <div class="nav-sep"></div> 
+  <a href="CV_Adelphe_Borges-Silva.pdf" download class="nav-cta"><span>Télécharger le CV</span></a> 
+</nav> 
+<!-- ── ACCUEIL ── --> 
+<section id="accueil"> 
+  <div class="container"> 
+    <a href="https://www.linkedin.com/in/ad%C3%A8lphe-borges-silva-b45936316/" target="_blank" rel="noopener noreferrer" class="hero-tag"> 
+      <span>Voir mon profil LinkedIn</span> 
+      <div class="hero-tag-arrow"> 
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(168,129,255,.9)" stroke-width="2" aria-hidden="true"> 
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/> 
+        </svg> 
+      </div> 
+    </a> 
+    <h1 class="hero-h1"> 
+      Le Portfolio<br> 
+      <span class="grad">d'un Technicien IT.</span> 
+    </h1> 
+    <p class="hero-sub"> 
+      Bonjour, je suis <strong>Adelphe Borges-Silva</strong>,<br> 
+      étudiant en BTS SIO option <strong>SISR</strong> à Paris. 
+    </p> 
+    <div class="hero-btns"> 
+      <a href="#projets" class="btn-pill btn-outline">Voir mes projets →</a> 
+      <a href="#profil" class="btn-pill btn-solid">Découvrir mon profil</a> 
+      <a href="CV_Adelphe_Borges-Silva.pdf" download class="btn-pill btn-outline btn-small"> 
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> 
+          <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/> 
+        </svg> 
+        Télécharger mon CV 
+      </a> 
+    </div> 
+  </div> 
+</section> 
+<!-- ── INTRO ── --> 
+<section id="intro" class="section-intro"> 
+  <div class="intro-text"> 
+    <span>L'informatique ne se limite pas à des lignes de code, </span> 
+    <span id="scroll-words"> 
+      <span class="fade-word">Derrière </span> 
+      <span class="fade-word">chaque </span> 
+      <span class="fade-word">connexion </span> 
+      <span class="fade-word">stable </span> 
+      <span class="fade-word">se </span> 
+      <span class="fade-word">cache </span> 
+      <span class="fade-word">une </span> 
+      <span class="fade-word">architecture </span> 
+      <span class="fade-word">pensée, </span> 
+      <span class="fade-word">configurée </span> 
+      <span class="fade-word">et </span> 
+      <span class="fade-word">sécurisée. </span> 
+      <span class="fade-word">En </span> 
+      <span class="fade-word">BTS </span> 
+      <span class="fade-word">SIO </span> 
+      <span class="fade-word">option </span> 
+      <span class="fade-word">SISR, </span> 
+      <span class="fade-word">je </span> 
+      <span class="fade-word">construis </span> 
+      <span class="fade-word">les </span> 
+      <span class="fade-word">fondations </span> 
+      <span class="fade-word">invisibles </span> 
+      <span class="fade-word">sur </span> 
+      <span class="fade-word">lesquelles </span> 
+      <span class="fade-word">repose </span> 
+      <span class="fade-word">le </span> 
+      <span class="fade-word">numérique. </span> 
+    </span> 
+    <span class="intro-cta grad-blue">Découvrons les deux spécialités du BTS.</span> 
+  </div> 
+</section> 
+<!-- ── FORMATION ── --> 
+<section id="formation"> 
+  <div class="container"> 
+    <div class="formation-header"> 
+      <div class="section-badge"><span class="badge-star">✶</span> <span>Parcours Académique</span></div> 
+      <h2 class="formation-h2">Ma formation, le <span class="grad">BTS SIO</span>.</h2> 
+      <p class="formation-sub">Une formation technique en informatique, se divisant en deux spécialités.</p> 
+    </div> 
+<div class="options-grid"> 
+  <div class="option-card slam"> 
+    <div class="option-inner"> 
+      <div class="option-label">SLAM</div> 
+      <h3 class="option-title">Solutions Logicielles et Applications Métiers</h3> 
+      <p class="option-desc">Cette spécialisation se concentre sur la conception, le développement et la maintenance d'applications informatiques.</p> 
+      <ul class="option-list"> 
+        <li>Développement d'applications web et mobiles</li> 
+        <li>Cycle de vie, de la conception à la mise en production</li> 
+        <li>Programmation orientée objet et architecture logicielle</li> 
+        <li>Gestion de bases de données relationnelles et NoSQL</li> 
+        <li>Optimisation des performances des applications</li> 
+      </ul> 
+    </div> 
+  </div> 
+  <div class="option-card sisr"> 
+    <span class="option-badge">Mon option ✓</span> 
+    <div class="option-inner"> 
+      <div class="option-label">SISR</div> 
+      <h3 class="option-title">Solutions d'Infrastructure, Systèmes et Réseaux</h3> 
+      <p class="option-desc">La spécialisation SISR est centrée sur l'administration des infrastructures réseaux et systèmes.</p> 
+      <ul class="option-list"> 
+        <li>Sécurisation des systèmes et des réseaux</li> 
+        <li>Virtualisation des infrastructures et gestion de serveurs</li> 
+        <li>Administration des réseaux, systèmes et bases de données</li> 
+        <li>Maintenance préventive et gestion des incidents</li> 
+        <li>Mise en place de solutions de sauvegarde / récupération</li> 
+        <li>Gestion des solutions d'infrastructures réseaux complexes</li> 
+      </ul> 
+    </div> 
+  </div> 
+</div> 
+<div class="formation-stats"> 
+  <div class="stat-card"><div class="stat-icon">🕐</div><div class="stat-title">Durée</div><div class="stat-val">2 ans · 1 350h de cours</div></div> 
+  <div class="stat-card"><div class="stat-icon">🔄</div><div class="stat-title">Rythme alternance</div><div class="stat-val">3j entreprise / 2j formation</div></div> 
+  <div class="stat-card"><div class="stat-icon">🎓</div><div class="stat-title">Validation</div><div class="stat-val">Diplôme d'État · Niveau 5 (Bac+2)</div></div> 
+</div> 
+<div class="formation-quote"> 
+  Deux spécialisations différentes pour une expertise <strong>concrète</strong> et <strong>opérationnelle.</strong><br> 
+  Le BTS SIO ouvre la voie à des carrières diversifiées dans un secteur en pleine évolution. 
+</div> 
+  </div> 
+</section> 
+<!-- ── PROFIL ── --> 
+<section id="profil"> 
+  <div class="container"> 
+    <div class="text-center profil-heading"> 
+      <div class="section-badge"><span class="badge-star">✶</span> <span>PROFIL</span></div> 
+      <h2 class="profil-h2">Découvrez mon <span class="grad-blue">profil</span>.</h2> 
+      <p class="profil-sub">Obtenez un aperçu rapide de mon parcours et de mes compétences.</p> 
+    </div> 
+<div class="profil-wrap"> 
+  <div class="profil-card-outer"> 
+    <div class="profil-card-inner"> 
+      <div class="profil-top"> 
+        <div class="profil-avatar">AB</div> 
+        <div> 
+          <div class="profil-name">Adelphe <span class="profil-name-blue">BORGES-SILVA</span></div> 
+          <div class="profil-role">Apprenti BTS SIO SISR · H3 Hitema · Fiducial</div> 
+        </div> 
+      </div> 
+      <div class="profil-body"> 
+        <div class="profil-col"> 
+          <div class="profil-col-title">Informations</div> 
+          <div class="profil-info-list"> 
+            <div class="profil-info-row">📍 Gonesse (95500)</div> 
+            <div class="profil-info-row">✉️ <a href="mailto:adelphe.bsilva@gmail.com">adelphe.bsilva@gmail.com</a></div> 
+            <div class="profil-info-row">💻 github.com/Ade-gns</div> 
+            <div class="profil-info-row">🔗 linkedin.com/in/adèlphe-borges-silva</div> 
+            <div class="profil-info-row">🎓 H3 Hitema, Paris</div> 
+          </div> 
+        </div> 
+        <div class="profil-col"> 
+          <div class="profil-col-title">Expérience</div> 
+          <div class="profil-exp-list"> 
+            <div><div class="profil-exp-co">Fiducial</div><div class="profil-exp-role">Technicien Support de proximité</div><div class="profil-exp-date">Sept. 2025 – Présent</div></div> 
+            <div><div class="profil-exp-co">AXA France</div><div class="profil-exp-role">Technicien Support Informatique</div><div class="profil-exp-date">Avr. 2025 – Sept. 2025</div></div> 
+            <div><div class="profil-exp-co">JDC – Aubervilliers</div><div class="profil-exp-role">Technicien Informatique</div><div class="profil-exp-date">Sept. 2024 – Mars 2025</div></div> 
+            <div><div class="profil-exp-co">Mairie de Gonesse</div><div class="profil-exp-role">Technicien Informatique DSI</div><div class="profil-exp-date">Sept. 2020 – Août 2022</div></div> 
+            <div><div class="profil-exp-co">Paradisia</div><div class="profil-exp-role">Technicien Informatique (Stage)</div><div class="profil-exp-date">Fév. 2020 – Avr. 2020</div></div> 
+            <div><div class="profil-exp-co">Paradisia</div><div class="profil-exp-role">Technicien Informatique (Stage)</div><div class="profil-exp-date">Nov. 2018 – Jan. 2019</div></div> 
+          </div> 
+        </div> 
+      </div> 
+      <div class="profil-strengths"> 
+        <div class="profil-str">Autonomie</div> 
+        <div class="profil-str">Rigueur</div> 
+        <div class="profil-str">Esprit d'équipe</div> 
+        <div class="profil-str">Capacité d'adaptation</div> 
+      </div> 
+    </div> 
+  </div> 
+</div> 
+  </div> 
+</section> 
+<!-- ── COMPETENCES ── --> 
+<section id="competences"> 
+  <div class="container"> 
+    <div class="comp-layout"> 
+      <div> 
+        <div class="comp-badge"><div class="section-badge"><span class="badge-star">✶</span> <span>OUTILS</span></div></div> 
+        <h2 class="comp-h2">L'arsenal technique qui fait toute la <span class="grad">différence</span>.</h2> 
+        <p class="comp-desc">Ces outils sont au cœur de mon quotidien en entreprise et en formation. Je les utilise pour administrer, déployer, sécuriser et superviser des infrastructures informatiques.</p> 
+      </div> 
+      <div class="comp-scroll-wrap"> 
+        <div class="comp-scroll-col"> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🪟</div><h3 class="comp-card-tool-name">Windows Server</h3><p class="comp-card-tool-desc">Installation, AD, DHCP, GPO en TP et entreprise.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🐧</div><h3 class="comp-card-tool-name">Linux</h3><p class="comp-card-tool-desc">Debian, Ubuntu – LAMP, SSH, DNS, administration système.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">📋</div><h3 class="comp-card-tool-name">GLPI</h3><p class="comp-card-tool-desc">Tickets, inventaire et suivi des interventions.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">📱</div><h3 class="comp-card-tool-name">Intune / MDM</h3><p class="comp-card-tool-desc">Enrôlement et gestion d'appareils mobiles iOS.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">☁️</div><h3 class="comp-card-tool-name">Workspace One</h3><p class="comp-card-tool-desc">Profils utilisateurs et intégration réseau entreprise.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">📊</div><h3 class="comp-card-tool-name">Grafana</h3><p class="comp-card-tool-desc">Supervision et monitoring d'infrastructures.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🔒</div><h3 class="comp-card-tool-name">Sécurité Réseaux</h3><p class="comp-card-tool-desc">Sécurisation des systèmes et gestion des risques.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🖥️</div><h3 class="comp-card-tool-name">PDQ Deploy</h3><p class="comp-card-tool-desc">Déploiement automatisé de postes de travail.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">💻</div><h3 class="comp-card-tool-name">VMware</h3><p class="comp-card-tool-desc">Création et gestion de machines virtuelles, déploiement en production.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🌐</div><h3 class="comp-card-tool-name">Apache2</h3><p class="comp-card-tool-desc">Configuration de serveurs web, VirtualHost, mod_rewrite et modules PHP.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🗄️</div><h3 class="comp-card-tool-name">MariaDB / MySQL</h3><p class="comp-card-tool-desc">Création et administration de bases de données SQL, sécurisation et import/export.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🐘</div><h3 class="comp-card-tool-name">PHP</h3><p class="comp-card-tool-desc">Déploiement d'applications web, configuration php.ini, extensions serveur.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">📦</div><h3 class="comp-card-tool-name">OCS Inventory NG</h3><p class="comp-card-tool-desc">Inventaire automatique du parc informatique, agents et intégration GLPI.</p></div> 
+          <div class="comp-card-tool"><div class="comp-card-tool-icon">🔵</div><h3 class="comp-card-tool-name">phpMyAdmin</h3><p class="comp-card-tool-desc">Interface web d'administration des bases de données MariaDB/MySQL.</p></div> 
+        </div> 
+      </div> 
+    </div> 
+  </div> 
+</section> 
+<!-- ── PROJETS ── --> 
+<section id="projets"> 
+  <div class="container"> 
+    <div class="projets-header"> 
+      <div class="section-badge"><span class="badge-star">✶</span> <span>PROJETS</span></div> 
+      <h2 class="projets-h2">Du concept à la <span class="grad">réalité</span>.</h2> 
+      <p class="projets-sub">Découvrez les projets que j'ai réalisés au fil de mon parcours.</p> 
+    </div> 
+<div class="projets-grid"> 
+  <a href="TP_Debian_Marvel_v2.pdf" target="_blank" class="projet-card-new"> 
+    <span class="card-status">Terminé</span> 
+    <div class="card-main"><img src="logos/debian.svg" alt="Debian" class="card-img"></div> 
+    <div class="card-footer"> 
+      <div class="card-title-wrap"> 
+        <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 
+        <span class="card-title">TP Linux – Administration Debian</span> 
+      </div> 
+    </div> 
+    <span class="card-year">2024</span> 
+    <div class="card-arrow"> 
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg> 
+    </div> 
+  </a> 
+  <a href="Procedure_Installation_GLPI_corrigee(1).pdf" target="_blank" class="projet-card-new"> 
+    <span class="card-status">Terminé</span> 
+    <div class="card-main"><img src="logos/glpi.svg" alt="GLPI" class="card-img"></div> 
+    <div class="card-footer"> 
+      <div class="card-title-wrap"> 
+        <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 
+        <span class="card-title">Mise en place de GLPI</span> 
+      </div> 
+    </div> 
+    <span class="card-year">2022</span> 
+    <div class="card-arrow"> 
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg> 
+    </div> 
+  </a> 
+  <a href="Procedure_Installation_phpMyAdmin_corrigee.pdf" target="_blank" class="projet-card-new"> 
+    <span class="card-status">Terminé</span> 
+    <div class="card-main"><img src="logos/phpmyadmin.svg" alt="phpMyAdmin" class="card-img"></div> 
+    <div class="card-footer"> 
+      <div class="card-title-wrap"> 
+        <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 
+        <span class="card-title">Réalisation phpMyAdmin</span> 
+      </div> 
+    </div> 
+    <span class="card-year">2021</span> 
+    <div class="card-arrow"> 
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg> 
+    </div> 
+  </a> 
+  <a href="Migration_GLPI_complete.pdf" target="_blank" class="projet-card-new"> 
+    <span class="card-status">Terminé</span> 
+    <div class="card-main"><img src="logos/glpi.svg" alt="Migration GLPI" class="card-img"></div> 
+    <div class="card-footer"> 
+      <div class="card-title-wrap"> 
+        <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 
+        <span class="card-title">Migration serveur GLPI</span> 
+      </div> 
+    </div> 
+    <span class="card-year">2021</span> 
+    <div class="card-arrow"> 
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg> 
+    </div> 
+  </a> 
+  <a href="Procedure_Installation_OCS_corrigee.pdf" target="_blank" class="projet-card-new"> 
+    <span class="card-status">Terminé</span> 
+    <div class="card-main"><img src="logos/ocs.svg" alt="OCS Inventory" class="card-img"></div> 
+    <div class="card-footer"> 
+      <div class="card-title-wrap"> 
+        <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 
+        <span class="card-title">Installation OCS Inventory</span> 
+      </div> 
+    </div> 
+    <span class="card-year">2021</span> 
+    <div class="card-arrow"> 
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg> 
+    </div> 
+  </a> 
+  <a href="GLPI_11.0.7_Installation_Migration.pdf" target="_blank" class="projet-card-new"> 
+    <span class="card-status">Terminé</span> 
+    <div class="card-main"><img src="logos/glpi.svg" alt="GLPI 11" class="card-img"></div> 
+    <div class="card-footer"> 
+      <div class="card-title-wrap"> 
+        <svg class="card-icon-blue" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 
+        <span class="card-title">GLPI 11 – Installation & Migration</span> 
+      </div> 
+    </div> 
+    <span class="card-year">2025</span> 
+    <div class="card-arrow"> 
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg> 
+    </div> 
+  </a> 
+</div> 
+   </div> 
+</section> 
+ <!-- ── CERTIFICATIONS ── --> 
+<section id="certifications"> 
+  <div class="container"> 
+    <div class="certif-header"> 
+      <div class="section-badge"><span class="badge-star">✶</span> <span>CERTIFICATIONS</span></div> 
+      <h2 class="certif-h2">Mes <span class="grad-green">certifications</span>.</h2> 
+      <p class="certif-sub">Découvrez les certifications que j'ai obtenues au fil de mon parcours.</p> 
+    </div> 
+    <div class="certif-carousel"> 
+      <button class="certif-nav" onclick="changeCertif(-1)" aria-label="Précédent"> 
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg> 
+      </button> 
+      <div class="certif-circle empty" id="certif-circle" style="background:linear-gradient(160deg,#6DD5FA 40%,#2980B9 80%);"> 
+        <span id="certif-icon">📦</span> 
+      </div> 
+      <button class="certif-nav" onclick="changeCertif(1)" aria-label="Suivant"> 
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> 
+      </button> 
+    </div> 
+    <div class="certif-info empty" id="certif-info"> 
+      <h2 id="certif-title">À remplir</h2> 
+      <p id="certif-desc">Nom et description de la certification à ajouter ici.</p> 
+    </div> 
+  </div> 
+</section> 
+ <!-- ── VEILLE ── --> 
+ <section id="veille"> 
+  <div class="container"> 
+    <div class="veille-header"> 
+      <div class="section-badge"><span class="badge-star">✶</span> <span>VEILLE TECHNOLOGIQUE</span></div> 
+      <h2 class="veille-h2">Rester à la <span class="grad">pointe</span>.</h2> 
+    </div> 
+    <div class="articles-grid"> 
+  <a href="https://github.blog/changelog/" target="_blank" rel="noopener noreferrer" class="article-card"> 
+    <div class="article-tag">Développement</div> 
+    <h3 class="article-title">GitHub Copilot : l'arrivée de l'agent de code IA autonome</h3> 
+    <p class="article-desc">GitHub déploie en 2025 son nouvel agent de code capable d'automatiser l'ajout de fonctionnalités, la correction de bugs et la création de tests. Le protocole MCP (Model Context Protocol) ouvre Copilot à un écosystème d'outils IA plus large, redéfinissant le workflow des développeurs.</p> 
+    <div class="article-meta"> 
+      <span class="article-source">GitHub Blog</span> 
+      <span class="article-date">2025</span> 
+    </div> 
+    <span class="article-link">Lire l'article →</span> 
+  </a> 
+   <a href="https://www.omgubuntu.co.uk/2025/01/linux-kernel-6-13-release-features" target="_blank" rel="noopener noreferrer" class="article-card"> 
+    <div class="article-tag">Linux</div> 
+    <h3 class="article-title">Noyau Linux 6.13 : préemption paresseuse et +45 % de débit réseau</h3> 
+    <p class="article-desc">Sortie le 19 janvier 2025, la nouvelle version du kernel apporte la « lazy preemption », une optimisation réseau spectaculaire (+45 % de débit, -30 % de consommation), de nouveaux pilotes Rust et le support des CPU Intel Panther Lake et AMD EPYC 9005.</p> 
+    <div class="article-meta"> 
+      <span class="article-source">OMG! Ubuntu</span> 
+      <span class="article-date">Jan. 2025</span> 
+    </div> 
+    <span class="article-link">Lire l'article →</span> 
+  </a> 
+  <a href="https://www.it-connect.fr/windows-server-2025-est-disponible-quelles-sont-les-nouveautes/" target="_blank" rel="noopener noreferrer" class="article-card"> 
+    <div class="article-tag">Windows Server</div> 
+    <h3 class="article-title">Windows Server 2025 : hotpatching, Azure Arc et plateforme IA</h3> 
+    <p class="article-desc">Disponible depuis novembre 2024, Windows Server 2025 (LTSC, support jusqu'en 2034) introduit le hotpatching en direct pour réduire les redémarrages, le partitionnement GPU pour les charges IA, une intégration Azure Arc native et une UI alignée sur Windows 11.</p> 
+    <div class="article-meta"> 
+      <span class="article-source">IT-Connect</span> 
+      <span class="article-date">Nov. 2024</span> 
+    </div> 
+    <span class="article-link">Lire l'article →</span> 
+  </a> 
+  <a href="https://learn.microsoft.com/fr-fr/windows/whats-new/whats-new-windows-11-version-25h2" target="_blank" rel="noopener noreferrer" class="article-card"> 
+    <div class="article-tag">Windows</div> 
+    <h3 class="article-title">Windows 11 25H2 : Wi-Fi 7, Sudo et fin de PowerShell 2.0</h3> 
+    <p class="article-desc">La mise à jour 25H2 partage la base de code de 24H2 et déploie Sudo for Windows, le support Wi-Fi 7 entreprise, la sauvegarde Windows pour organisations et la suppression définitive de PowerShell 2.0 et WMIC, marquant un tournant sécuritaire.</p> 
+    <div class="article-meta"> 
+      <span class="article-source">Microsoft Learn</span> 
+      <span class="article-date">2025</span> 
+    </div> 
+    <span class="article-link">Lire l'article →</span> 
+  </a> 
+</div> 
+  </div> 
+</section> 
+<!-- ── FOOTER ── --> 
+<footer> 
+  <div class="footer-top-line"></div> 
+  <div class="footer-grid"> 
+    <div> 
+      <div class="footer-name">Adelphe <span class="grad">BORGES-SILVA</span></div> 
+      <div class="footer-sub">Portfolio BTS SIO SISR</div> 
+    </div> 
+    <div> 
+      <div class="footer-nav-title">Navigation</div> 
+      <nav class="footer-nav"> 
+        <a href="#accueil">Accueil</a> 
+        <a href="#formation">Formation</a> 
+        <a href="#profil">Profil</a> 
+        <a href="#projets">Projets</a> 
+        <a href="#certifications">Certifications</a> 
+        <a href="#veille">Veilles</a> 
+      </nav> 
+    </div> 
+    <div> 
+      <div class="footer-social-title">Me suivre</div> 
+      <div class="footer-socials"> 
+        <a href="https://www.linkedin.com/in/ad%C3%A8lphe-borges-silva-b45936316" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn"> 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> 
+        </a> 
+        <a href="https://github.com/Ade-gns" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub"> 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> 
+        </a> 
+        <a href="mailto:adelphe.bsilva@gmail.com" class="social-btn" title="Email"> 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a> 
+      </div> 
+    </div> 
+  </div> 
+  <div class="footer-copy">© 2025 Adelphe Borges-Silva. Tous droits réservés.</div> 
+</footer> 
+<script src="script.js"></script> 
+</body> 
+</html> 
