@@ -8,7 +8,19 @@
   <meta name="author" content="Adelphe Borges-Silva"/>
   <link href="https://fonts.googleapis.com/css2?family=Causten:wght@500;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
-  <script src="script.js"></script>
+  <style>
+    /* Styles critiques pour l'effet d'apparition des mots (Intro) */
+    .fade-word {
+      opacity: 0.2;
+      transition: opacity 0.6s ease;
+      display: inline-block;
+      margin-right: 0.25rem;
+    }
+    .fade-word.visible {
+      opacity: 1;
+      color: #fff; /* ou la couleur souhaitée pour les mots actifs */
+    }
+  </style>
 </head>
 <body>
 
@@ -173,7 +185,7 @@
               <div class="profil-col-title">Informations</div>
               <div class="profil-info-list">
                 <div class="profil-info-row">📍 Gonesse (95500)</div>
-                <div class="profil-info-row">✉️ <a href="mailto:borges.adelphe@gmail.com">adelphe.bsilva@gmail.com</a></div>
+                <div class="profil-info-row">✉️ <a href="mailto:borges.adelphe@gmail.com">Envoyer un mail</a></div>
                 <div class="profil-info-row">💻 github.com/Ade-gns</div>
                 <div class="profil-info-row">🔗 linkedin.com/in/adèlphe-borges-silva</div>
                 <div class="profil-info-row">🎓 H3 Hitema, Paris</div>
@@ -614,5 +626,7 @@
   </div>
   <div class="footer-copy">© 2025 Adelphe Borges-Silva. Tous droits réservés.</div>
 </footer>
+
+<script src="script.js"></script>
 </body>
 </html>
