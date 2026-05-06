@@ -68,3 +68,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if(infoEl) infoEl.className = 'certif-info' + (c.empty ? ' empty' : '');
   };
 });
+// === SCROLL PROGRESS ===
+const progressBar = document.querySelector('.scroll-progress');
+if (progressBar) {
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progressBar.style.width = scrolled + '%';
+  }, { passive: true });
+}
+// === BOUTONS MAGNÉTIQUES ===
+document.querySelectorAll('.btn-pill, .nav-cta, .btn-outline').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top  - r.height / 2;
+    btn.style.transform = `translate(${x * 0.18}px, ${y * 0.25}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+// === 3D TILT SUR CARTES ===
+document.querySelectorAll('.projet-card-new, .option-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    const rotX = ((y / r.height) - 0.5) * -8;
+    const rotY = ((x / r.width)  - 0.5) *  8;
+    card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-5px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});

@@ -24,7 +24,7 @@
   </style>
 </head>
 <body>
-
+<div class="scroll-progress" aria-hidden="true"></div>
 <!-- ── NAV ── -->
 <nav class="main-nav">
   <ul class="nav-links">
@@ -391,57 +391,76 @@
       <h2 id="certif-title">À remplir</h2>
       <p id="certif-desc">Nom et description de la certification à ajouter ici.</p>
     </div>
-  </div>
 </section>
 
 <!-- ── VEILLE ── -->
-<section id="veille">
-  <div class="container">
-    <div class="veille-header">
-      <div class="section-badge"><span class="badge-star">✶</span> <span>VEILLES</span></div>
-      <h2 class="veille-h2">Ma veille <span class="grad-blue">technologique</span>.</h2>
-      <p class="veille-sub">Je reste constamment informé des dernières avancées en infrastructure, cybersécurité et nouvelles technologies.</p>
-    </div>
-
-    <div class="veille-sources">
-      <div class="veille-src purple">
-        <div class="veille-glow-purple"></div>
-        <div style="position:relative;">
-          <h3>Mes sources</h3>
-          <p>Je suis attentivement l'actualité tech à travers des sources fiables comme <strong>Le Monde Informatique</strong>, <strong>ZDNet</strong>, <strong>Korben</strong> et d'autres médias spécialisés pour rester à la pointe des innovations.</p>
-        </div>
-      </div>
-      <div class="veille-src blue">
-        <div class="veille-glow-blue"></div>
-        <div style="position:relative;">
-          <h3>Cybersécurité des infrastructures</h3>
-          <p>Je suis de près l'évolution des menaces ciblant les systèmes Linux et Windows Server : ransomwares, zero-day, durcissement des configurations et bonnes pratiques de sécurisation des réseaux d'entreprise.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="veille-articles-title">Dernières actualités</div>
-    <div class="articles-grid">
-      <div class="article-card">
-        <div class="article-date">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          <span>Janvier 2025 · Le Monde Informatique</span>
-        </div>
-        <h4>Les ransomwares ciblent de plus en plus les PME et collectivités françaises</h4>
-        <p>Les attaques par rançongiciel se multiplient contre des structures aux ressources limitées en cybersécurité.</p>
-        <a href="#" class="article-link">Lire l'article <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-      </div>
-      <div class="article-card">
-        <div class="article-date">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          <span>Mars 2025 · ZDNet France</span>
-        </div>
-        <h4>GLPI 11 : une refonte majeure de l'outil de gestion de parc open source</h4>
-        <p>La version 11 introduit une nouvelle architecture PHP 8.2+ et un routeur moderne.</p>
-        <a href="#" class="article-link">Lire l'article <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-      </div>
-    </div>
+<!-- Article 1 : GitHub Copilot -->
+<a href="https://github.blog/changelog/" target="_blank" rel="noopener noreferrer" class="article-card">
+  <div class="article-tag">Développement</div>
+  <h3 class="article-title">GitHub Copilot : l'arrivée de l'agent de code IA autonome</h3>
+  <p class="article-desc">
+    GitHub déploie en 2025 son nouvel agent de code capable d'automatiser
+    l'ajout de fonctionnalités, la correction de bugs et la création de tests.
+    Le protocole MCP (Model Context Protocol) ouvre Copilot à un écosystème
+    d'outils IA plus large, redéfinissant le workflow des développeurs.
+  </p>
+  <div class="article-meta">
+    <span class="article-source">GitHub Blog</span>
+    <span class="article-date">2025</span>
   </div>
+  <span class="article-link">Lire l'article →</span>
+</a>
+
+<!-- Article 2 : Linux Kernel 6.13 -->
+<a href="https://www.omgubuntu.co.uk/2025/01/linux-kernel-6-13-release-features" target="_blank" rel="noopener noreferrer" class="article-card">
+  <div class="article-tag">Linux</div>
+  <h3 class="article-title">Noyau Linux 6.13 : préemption paresseuse et +45 % de débit réseau</h3>
+  <p class="article-desc">
+    Sortie le 19 janvier 2025, la nouvelle version du kernel apporte la
+    « lazy preemption », une optimisation réseau spectaculaire (+45 % de
+    débit, -30 % de consommation), de nouveaux pilotes Rust et le support
+    des CPU Intel Panther Lake et AMD EPYC 9005.
+  </p>
+  <div class="article-meta">
+    <span class="article-source">OMG! Ubuntu</span>
+    <span class="article-date">Jan. 2025</span>
+  </div>
+  <span class="article-link">Lire l'article →</span>
+</a>
+
+<!-- Article 3 : Windows Server 2025 -->
+<a href="https://www.it-connect.fr/windows-server-2025-est-disponible-quelles-sont-les-nouveautes/" target="_blank" rel="noopener noreferrer" class="article-card">
+  <div class="article-tag">Windows Server</div>
+  <h3 class="article-title">Windows Server 2025 : hotpatching, Azure Arc et plateforme IA</h3>
+  <p class="article-desc">
+    Disponible depuis novembre 2024, Windows Server 2025 (LTSC, support
+    jusqu'en 2034) introduit le hotpatching en direct pour réduire les
+    redémarrages, le partitionnement GPU pour les charges IA, une
+    intégration Azure Arc native et une UI alignée sur Windows 11.
+  </p>
+  <div class="article-meta">
+    <span class="article-source">IT-Connect</span>
+    <span class="article-date">Nov. 2024</span>
+  </div>
+  <span class="article-link">Lire l'article →</span>
+</a>
+
+<!-- Article 4 : Windows 11 25H2 -->
+<a href="https://learn.microsoft.com/fr-fr/windows/whats-new/whats-new-windows-11-version-25h2" target="_blank" rel="noopener noreferrer" class="article-card">
+  <div class="article-tag">Windows</div>
+  <h3 class="article-title">Windows 11 25H2 : Wi-Fi 7, Sudo et fin de PowerShell 2.0</h3>
+  <p class="article-desc">
+    La mise à jour 25H2 partage la base de code de 24H2 et déploie
+    Sudo for Windows, le support Wi-Fi 7 entreprise, la sauvegarde
+    Windows pour organisations et la suppression définitive de
+    PowerShell 2.0 et WMIC, marquant un tournant sécuritaire.
+  </p>
+  <div class="article-meta">
+    <span class="article-source">Microsoft Learn</span>
+    <span class="article-date">2025</span>
+  </div>
+  <span class="article-link">Lire l'article →</span>
+</a>
 </section>
 
 <!-- ── FOOTER ── -->
@@ -475,9 +494,6 @@
         <a href="mailto:adelphe.bsilva@gmail.com" class="social-btn" title="Email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </a>
-      </div>
-    </div>
-  </div>
   <div class="footer-copy">© 2025 Adelphe Borges-Silva. Tous droits réservés.</div>
 </footer>
 
