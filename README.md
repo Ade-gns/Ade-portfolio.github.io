@@ -6,11 +6,12 @@
 
 ## 👤 À propos
 
-Je suis **Adelphe Borges-Silva**, technicien informatique en alternance chez **Fiducial Staffing** (Courbevoie), avec plus de 6 ans d'expérience terrain dans le support, l'administration système et la gestion de parcs informatiques.
+Je suis **Adelphe Borges-Silva**, technicien informatique en alternance chez **Fiducial** (Courbevoie), avec plus de 6 ans d'expérience terrain dans le support, l'administration système et la gestion de parcs informatiques.
 
 - 📍 Gonesse (95500)
 - 📞 07 52 91 88 08
-- 🔗 [LinkedIn](https://linkedin.com/in/adèlphe-borges-silva-b45936316)
+- 🔗 [LinkedIn](https://linkedin.com/in/ad%C3%A8lphe-borges-silva-b45936316)
+- 💻 [GitHub](https://github.com/Ade-gns)
 
 ---
 
@@ -18,14 +19,14 @@ Je suis **Adelphe Borges-Silva**, technicien informatique en alternance chez **F
 
 | Diplôme | Établissement | Année |
 |---|---|---|
-| BTS SIO – Option SISR | H3 Hitema, Paris | 2025 |
+| BTS SIO – Option SISR | H3 Hitema, Paris | 2024 – 2026 |
 | Bac Pro Systèmes Numériques | Lycée la Tourelle, Sarcelles | 2017 – 2020 |
 
 ---
 
 ## 💼 Expériences
 
-### Fiducial Staffing — *Technicien Support de proximité* *(Sept. 2025 – présent)*
+### Fiducial — *Technicien Support de proximité* *(Sept. 2025 – présent)*
 - Support de proximité et assistance technique à distance
 - Déploiement et gestion de postes (PDQ, GLPI)
 - Gestion de tickets
@@ -58,7 +59,7 @@ Je suis **Adelphe Borges-Silva**, technicien informatique en alternance chez **F
 | Catégorie | Outils / Technologies |
 |---|---|
 | Systèmes | Windows 11, Linux, macOS, Windows Server |
-| Administration | Active Directory, Intune (MDM), Workspace One, Inetune |
+| Administration | Active Directory, Intune (MDM), Workspace One |
 | Réseaux | Gestion des réseaux LAN/WAN, sécurité informatique |
 | Support | GLPI, PDQ, TeamViewer, ticketing |
 | Monitoring | Grafana |
@@ -71,7 +72,8 @@ Je suis **Adelphe Borges-Silva**, technicien informatique en alternance chez **F
 
 ```
 portfolio/
-├── index.html        # Page principale
+├── Index.html        # Page principale
+├── script.js         # Scripts et interactions
 ├── css/
 │   └── style.css     # Feuille de styles
 ├── assets/
@@ -86,10 +88,10 @@ portfolio/
 ```bash
 git clone https://github.com/Ade-gns/portfolio.git
 cd portfolio
-# Ouvrir index.html dans votre navigateur
+# Ouvrir Index.html dans votre navigateur
 ```
 
-Aucune dépendance requise — le projet est en HTML/CSS vanilla.
+Aucune dépendance requise — le projet est en HTML/CSS/JS vanilla.
 
 ---
 
@@ -102,4 +104,4 @@ Ce portfolio a été conçu pour :
 
 ---
 
-*Développé avec le ❤️ par Adelphe Borges-Silva — 2025*
+*Développé avec ❤️ par Adelphe Borges-Silva — 2026*
