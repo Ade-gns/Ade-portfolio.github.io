@@ -1,91 +1,29 @@
-<!--
-  ══════════════════════════════════════════════════════════════
-  CERTIFICATIONS — À RÉINTÉGRER QUAND J'AUREAIS MES CERTICATION
-  ══════════════════════════════════════════════════════════════
+<!--A coller entre section et Veille-->
+<!-- ── CERTIFICATIONS ── --> 
+<section id="certifications"> 
+  <div class="container"> 
+    <div class="certif-header"> 
+      <div class="section-badge"><span class="badge-star">✶</span> <span>CERTIFICATIONS</span></div> 
+      <h2 class="certif-h2">Mes <span class="grad-green">certifications</span>.</h2> 
+      <p class="certif-sub">Découvrez les certifications que j'ai obtenues au fil de mon parcours.</p> 
+    </div> 
+    <div class="certif-carousel"> 
+      <button class="certif-nav" onclick="changeCertif(-1)" aria-label="Précédent"> 
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg> 
+      </button> 
+      <div class="certif-circle empty" id="certif-circle" style="background:linear-gradient(160deg,#6DD5FA 40%,#2980B9 80%);"> 
+        <span id="certif-icon">📦</span> 
+      </div> 
+      <button class="certif-nav" onclick="changeCertif(1)" aria-label="Suivant"> 
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> 
+      </button> 
+    </div> 
+    <div class="certif-info empty" id="certif-info"> 
+      <h2 id="certif-title">À remplir</h2> 
+      <p id="certif-desc">Nom et description de la certification à ajouter ici.</p> 
+    </div> 
+  </div> 
+</section> 
 
-  ÉTAPES POUR RÉINTÉGRER :
-  1. Colle la section HTML dans index.html (avant le footer)
-  2. Ajoute le lien nav dans index.html : <li><a href="#certifications">Certifications</a></li>
-  3. Ajoute le lien footer dans index.html : <a href="#certifications">Certifications</a>
-  4. Colle le bloc CSS dans css/style.css (avant la section VEILLE)
-  5. Colle le bloc JS dans script.js (avant la section barre de progression)
-  6. Remplis le tableau `certifs` dans le JS avec tes vraies certifications
-
-  FORMAT D'UN OBJET CERTIFICATION :
-  { icon: '🏅', title: 'Nom de la certification', desc: 'Description courte.', empty: false }
-  ══════════════════════════════════════════════════════════════
--->
-
-
-<!-- ══ HTML — coller dans index.html avant le footer ══ -->
-
-<section id="certifications">
-  <div class="container">
-    <div class="certif-header">
-      <div class="section-badge"><span class="badge-star">✶</span> <span>CERTIFICATIONS</span></div>
-      <h2 class="certif-h2">Mes <span class="grad-green">certifications</span>.</h2>
-      <p class="certif-sub">Découvrez les certifications que j'ai obtenues au fil de mon parcours.</p>
-    </div>
-    <div class="certif-carousel">
-      <button class="certif-nav" onclick="changeCertif(-1)" aria-label="Précédent">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-      </button>
-      <div class="certif-circle empty" id="certif-circle" style="background:linear-gradient(160deg,#6DD5FA 40%,#2980B9 80%);">
-        <span id="certif-icon">📦</span>
-      </div>
-      <button class="certif-nav" onclick="changeCertif(1)" aria-label="Suivant">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-      </button>
-    </div>
-    <div class="certif-info empty" id="certif-info">
-      <h2 id="certif-title">À remplir</h2>
-      <p id="certif-desc">Nom et description de la certification à ajouter ici.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══ CSS — coller dans style.css avant la section VEILLE ══ -->
-<!--
-/* ── CERTIFICATIONS ── */
-#certifications{background:#000;padding:7rem 2rem;}
-.certif-header{text-align:center;margin-bottom:4rem;}
-.certif-h2{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.8rem;}
-.certif-sub{color:rgba(255,255,255,.4);}
-.certif-carousel{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2rem;}
-.certif-circle{width:16rem;height:16rem;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:rgba(242,242,242,.04);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5);}
-.certif-circle.empty{opacity:.25;}
-.certif-nav{padding:.5rem;border-radius:50%;background:rgba(255,255,255,.06);border:none;cursor:pointer;color:#fff;display:flex;}
-.certif-info{text-align:center;max-width:500px;margin:0 auto;}
-.certif-info h2{font-size:2rem;font-weight:700;margin-bottom:.8rem;}
-.certif-info p{color:rgba(255,255,255,.5);font-size:.95rem;}
-.certif-info.empty{opacity:.25;}
--->
-
-
-<!-- ══ JS — coller dans script.js avant la section barre de progression ══ -->
-<!--
- // ── CARROUSEL CERTIFICATIONS ──
- const certifs = [
-   // Remplace les objets vides par tes vraies certifications :
-   // { icon: '🏅', title: 'Nom de la certification', desc: 'Description courte.', empty: false },
-   { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
-   { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
-   { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
- ];
- let certIdx = 0;
- window.changeCertif = function(dir) {
-   certIdx = (certIdx + dir + certifs.length) % certifs.length;
-   const c = certifs[certIdx];
-   const iconEl = document.getElementById('certif-icon');
-   const titleEl = document.getElementById('certif-title');
-   const descEl = document.getElementById('certif-desc');
-   const circleEl = document.getElementById('certif-circle');
-   const infoEl = document.getElementById('certif-info');
-   if (iconEl) iconEl.textContent = c.icon;
-   if (titleEl) titleEl.textContent = c.title;
-   if (descEl) descEl.textContent = c.desc;
-   if (circleEl) circleEl.className = 'certif-circle' + (c.empty ? ' empty' : '');
-   if (infoEl) infoEl.className = 'certif-info' + (c.empty ? ' empty' : '');
- };
--->
+<!--A mettre dans NAV-->
+<li><a href="#certifications">Certifications</a></li> 
