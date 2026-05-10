@@ -1,0 +1,84 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Portfolio – Adelphe Borges-Silva | BTS SIO SISR</title>
+  <desc>Image de prévisualisation Open Graph pour le portfolio d'Adelphe Borges-Silva</desc>
+
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6ec7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d0d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glowLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6ec7;stop-opacity:0.18" />
+      <stop offset="100%" style="stop-color:#ff6ec7;stop-opacity:0" />
+    </linearGradient>
+    <linearGradient id="glowRight" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff8c00;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fond noir -->
+  <rect width="1200" height="630" fill="url(#gradBg)" />
+
+  <!-- Halos décoratifs -->
+  <ellipse cx="150" cy="140" rx="400" ry="320" fill="url(#glowLeft)" />
+  <ellipse cx="1100" cy="510" rx="360" ry="280" fill="url(#glowRight)" />
+
+  <!-- Grille décorative subtile -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="0.8">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="150" y1="0" x2="150" y2="630"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="450" y1="0" x2="450" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="750" y1="0" x2="750" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1050" y1="0" x2="1050" y2="630"/>
+  </g>
+
+  <!-- Badge BTS SIO SISR -->
+  <rect x="70" y="80" width="200" height="36" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="url(#grad1)" stroke-width="1.2"/>
+  <text x="170" y="103" text-anchor="middle" fill="url(#grad1)" font-family="'Outfit', 'Causten', Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="2">BTS SIO · SISR</text>
+
+  <!-- Nom principal -->
+  <text x="70" y="240" font-family="'Outfit', 'Causten', Arial, sans-serif" font-size="86" font-weight="700" fill="#ffffff" letter-spacing="-1">Adelphe</text>
+  <text x="70" y="340" font-family="'Outfit', 'Causten', Arial, sans-serif" font-size="86" font-weight="700" fill="url(#grad1)" letter-spacing="-1">Borges-Silva</text>
+
+  <!-- Ligne séparatrice -->
+  <rect x="70" y="368" width="90" height="3" rx="1.5" fill="url(#grad1)"/>
+
+  <!-- Sous-titre -->
+  <text x="70" y="415" font-family="'Outfit', 'Causten', Arial, sans-serif" font-size="24" font-weight="400" fill="#999999" letter-spacing="0.5">Technicien IT · Administration Systèmes &amp; Réseaux</text>
+
+  <!-- Tags compétences -->
+  <rect x="70" y="448" width="148" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.12" stroke-width="0.8"/>
+  <text x="144" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#cccccc">Active Directory</text>
+
+  <rect x="230" y="448" width="90" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.12" stroke-width="0.8"/>
+  <text x="275" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#cccccc">Intune</text>
+
+  <rect x="332" y="448" width="74" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.12" stroke-width="0.8"/>
+  <text x="369" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#cccccc">GLPI</text>
+
+  <rect x="418" y="448" width="74" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.12" stroke-width="0.8"/>
+  <text x="455" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#cccccc">Linux</text>
+
+  <rect x="504" y="448" width="100" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.12" stroke-width="0.8"/>
+  <text x="554" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#cccccc">Windows</text>
+
+  <!-- URL en bas à droite -->
+  <text x="1130" y="590" text-anchor="end" font-family="Arial, sans-serif" font-size="18" fill="#444444" letter-spacing="0.5">github.com/Ade-gns</text>
+
+  <!-- Points décoratifs -->
+  <circle cx="1140" cy="100" r="7" fill="url(#grad1)" fill-opacity="0.6"/>
+  <circle cx="1118" cy="122" r="4.5" fill="url(#grad1)" fill-opacity="0.35"/>
+  <circle cx="1158" cy="128" r="3.5" fill="url(#grad1)" fill-opacity="0.25"/>
+</svg>

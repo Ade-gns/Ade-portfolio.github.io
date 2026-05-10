@@ -27,3 +27,43 @@
 
 <!--A mettre dans NAV-->
 <li><a href="#certifications">Certifications</a></li> 
+
+
+<!--Ligne 23 du JS-->
+ // ── CARROUSEL CERTIFICATIONS ──
+ const certifs = [
+ { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
+ { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
+ { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
+ ];
+ let certIdx = 0;
+ window.changeCertif = function(dir) {
+ certIdx = (certIdx + dir + certifs.length) % certifs.length;
+ const c = certifs[certIdx];
+ const iconEl = document.getElementById('certif-icon');
+ const titleEl = document.getElementById('certif-title');
+ const descEl = document.getElementById('certif-desc');
+ const circleEl = document.getElementById('certif-circle');
+ const infoEl = document.getElementById('certif-info');
+ if (iconEl) iconEl.textContent = c.icon;
+ if (titleEl) titleEl.textContent = c.title;
+ if (descEl) descEl.textContent = c.desc;
+ if (circleEl) circleEl.className = 'certif-circle' + (c.empty ? ' empty' : '');
+ if (infoEl) infoEl.className = 'certif-info' + (c.empty ? ' empty' : '');
+ };
+ 
+ 
+ <!--Ligne 194 du CSS-->
+
+ /* ── CERTIFICATIONS ── */
+#certifications{background:#000;padding:7rem 2rem;}
+.certif-header{text-align:center;margin-bottom:4rem;}
+.certif-h2{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.8rem;}
+.certif-sub{color:rgba(255,255,255,.4);}
+.certif-carousel{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2rem;}
+.certif-circle{width:16rem;height:16rem;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:rgba(242,242,242,.04);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.certif-circle.empty{opacity:.25;}
+.certif-nav{padding:.5rem;border-radius:50%;background:rgba(255,255,255,.06);border:none;cursor:pointer;color:#fff;display:flex;}
+.certif-info{text-align:center;max-width:500px;margin:0 auto;}
+.certif-info h2{font-size:2rem;font-weight:700;margin-bottom:.8rem;}
+.certif-info p{color:rgba(255,255,255,.5);font-size:.95rem;}

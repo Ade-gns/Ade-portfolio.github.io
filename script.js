@@ -21,27 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
  });
  }, { threshold: 1.0, rootMargin: '0px 0px -10% 0px' });
  words.forEach(word => wordObserver.observe(word));
- // ── CARROUSEL CERTIFICATIONS ──
- const certifs = [
- { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
- { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
- { icon: ' ', title: 'À remplir', desc: 'Nom et description de la certification à ajouter ici.', empty: true },
- ];
- let certIdx = 0;
- window.changeCertif = function(dir) {
- certIdx = (certIdx + dir + certifs.length) % certifs.length;
- const c = certifs[certIdx];
- const iconEl = document.getElementById('certif-icon');
- const titleEl = document.getElementById('certif-title');
- const descEl = document.getElementById('certif-desc');
- const circleEl = document.getElementById('certif-circle');
- const infoEl = document.getElementById('certif-info');
- if (iconEl) iconEl.textContent = c.icon;
- if (titleEl) titleEl.textContent = c.title;
- if (descEl) descEl.textContent = c.desc;
- if (circleEl) circleEl.className = 'certif-circle' + (c.empty ? ' empty' : '');
- if (infoEl) infoEl.className = 'certif-info' + (c.empty ? ' empty' : '');
- };
  // ── BARRE DE PROGRESSION AU SCROLL ──
  const progressBar = document.querySelector('.scroll-progress');
  if (progressBar) {
