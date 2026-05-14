@@ -531,11 +531,27 @@ function CollectorCard() {
 
 /* ── GhPanel ── */
 function GhPanel() {
-  const [stats, setStats] = useState({ repos:'—', followers:'—' });
+  const [stats, setStats] = useState({ repos:'—', followers:'—', stars:'—', topLang:'—' });
+
   useEffect(() => {
     fetch('https://api.github.com/users/Ade-gns')
-      .then(r=>r.ok?r.json():null).then(d=>{if(d)setStats({repos:d.public_repos,followers:d.followers});}).catch(()=>{});
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setStats(s => ({ ...s, repos: d.public_repos, followers: d.followers })); })
+      .catch(() => {});
+
+    fetch('https://api.github.com/users/Ade-gns/repos?per_page=100&type=public')
+      .then(r => r.ok ? r.json() : [])
+      .then(repos => {
+        if (!Array.isArray(repos)) return;
+        const stars = repos.reduce((n, r) => n + r.stargazers_count, 0);
+        const langMap = {};
+        repos.forEach(r => { if (r.language) langMap[r.language] = (langMap[r.language] || 0) + 1; });
+        const topLang = Object.entries(langMap).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
+        setStats(s => ({ ...s, stars, topLang }));
+      })
+      .catch(() => {});
   }, []);
+
   return (
     <div className="gh-panel">
       <div>
@@ -544,14 +560,34 @@ function GhPanel() {
       </div>
       <hr className="gh-divider" />
       <div className="gh-chart-wrap">
-        <img src="https://ghchart.rshah.org/b8924e/Ade-gns" alt="Ade-gns GitHub contributions graph" loading="lazy" />
+        <img src="https://ghchart.rshah.org/4a90e2/Ade-gns" alt="Ade-gns GitHub contributions graph" loading="lazy" />
         <div className="gh-chart-caption">contributions · last 12 months</div>
       </div>
-      <div className="gh-stats-row">
-        <div className="gh-stat-box"><span className="gh-stat-label">Public repos</span><span className="gh-stat-val">{stats.repos}</span><span className="gh-stat-sub">GitHub projects</span></div>
-        <div className="gh-stat-box"><span className="gh-stat-label">Followers</span><span className="gh-stat-val">{stats.followers}</span><span className="gh-stat-sub">on GitHub</span></div>
+      <div className="gh-stats-row gh-stats-row--4">
+        <div className="gh-stat-box">
+          <span className="gh-stat-label">Repos</span>
+          <span className="gh-stat-val">{stats.repos}</span>
+          <span className="gh-stat-sub">public</span>
+        </div>
+        <div className="gh-stat-box">
+          <span className="gh-stat-label">Stars</span>
+          <span className="gh-stat-val">{stats.stars}</span>
+          <span className="gh-stat-sub">total</span>
+        </div>
+        <div className="gh-stat-box">
+          <span className="gh-stat-label">Followers</span>
+          <span className="gh-stat-val">{stats.followers}</span>
+          <span className="gh-stat-sub">on GitHub</span>
+        </div>
+        <div className="gh-stat-box">
+          <span className="gh-stat-label">Top lang</span>
+          <span className="gh-stat-val gh-stat-val--lang">{stats.topLang}</span>
+          <span className="gh-stat-sub">most used</span>
+        </div>
       </div>
-      <a className="gh-profile-btn" href="https://github.com/Ade-gns" target="_blank" rel="noopener"><GitHubGlyph size={13} /> github.com/Ade-gns →</a>
+      <a className="gh-profile-btn" href="https://github.com/Ade-gns" target="_blank" rel="noopener">
+        <GitHubGlyph size={13} /> github.com/Ade-gns →
+      </a>
     </div>
   );
 }
