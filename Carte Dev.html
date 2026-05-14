@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Carte Dev — Ade-gns</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Text:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/carte-dev.css">
+</head>
+<body>
+
+<canvas id="sky"></canvas>
+<div class="scanlines" id="scanlines"></div>
+<div id="root"></div>
+
+<script src="js/image-slot.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- tweaks-panel inliné (nécessaire : Babel ne peut pas charger des src= externes) -->
+<script type="text/babel">
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;overflow-wrap:anywhere}
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+`;
+
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues(prev => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    offsetRef.current = {
+      x: Math.min(Math.max(PAD, window.innerWidth - w - PAD), Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(Math.max(PAD, window.innerHeight - h - PAD), Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = e => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = e => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = ev => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel"
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close"
+                  onMouseDown={e => e.stopPropagation()} onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">{children}</div>
+      </div>
+    </>
+  );
+}
+
+function TweakSection({ label }) {
+  return <div className="twk-sect">{label}</div>;
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={e => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={e => onChange(e.target.value)}>
+        {options.map(o => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+  const opts = options.map(o => typeof o === 'object' ? o : { value: o, label: o });
+  const idx = Math.max(0, opts.findIndex(o => o.value === value));
+  const n = opts.length;
+
+  const segAt = clientX => {
+    const r = trackRef.current.getBoundingClientRect();
+    const i = Math.floor(((clientX - r.left - 2) / (r.width - 4)) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = e => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = ev => { if (trackRef.current) { const v = segAt(ev.clientX); if (v !== valueRef.current) onChange(v); } };
+    const up = () => { setDragging(false); window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`, width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map(o => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+Object.assign(window, { useTweaks, TweaksPanel, TweakSection, TweakRow, TweakSlider, TweakToggle, TweakRadio, TweakSelect });
+</script>
+
+<!-- composants carte + ciel pixel -->
+<script type="text/babel">
+/* global React, ReactDOM, useTweaks, TweaksPanel, TweakSection, TweakSelect, TweakRadio, TweakSlider, TweakToggle */
+const { useRef, useEffect, useState, useCallback } = React;
+
+/* ── Palettes ── */
+const PALETTES = {
+  day:    { name:"Midi",    skyTop:"#6cbef0", skyMid:"#9ad7f5", skyHorizon:"#d3eefb", cloudHi:"#ffffff", cloudMid:"#dde7f1", cloudLo:"#9fb4cc", bodyA:"#fff4b8", bodyB:"#ffd86b", star:"#ffffff", accent:"#2f4858", stars:false },
+  sunset: { name:"Coucher", skyTop:"#3a2a6b", skyMid:"#d96b6b", skyHorizon:"#ffd07a", cloudHi:"#ffe1b0", cloudMid:"#d97a7a", cloudLo:"#6b2e6b", bodyA:"#ffe48a", bodyB:"#ff8a4c", star:"#ffe8b0", accent:"#26143a", stars:false },
+  night:  { name:"Nuit",    skyTop:"#0b1230", skyMid:"#1a2a5e", skyHorizon:"#3a4a8a", cloudHi:"#9fb3d8", cloudMid:"#5a6a9a", cloudLo:"#2a335c", bodyA:"#eaf0ff", bodyB:"#bcc6e6", star:"#ffffff", accent:"#06091a", stars:true  },
+  dawn:   { name:"Aube",    skyTop:"#2a3f78", skyMid:"#a07ab0", skyHorizon:"#ffc9a0", cloudHi:"#ffe6d0", cloudMid:"#b07ea0", cloudLo:"#4a3a78", bodyA:"#fff0c8", bodyB:"#ffb070", star:"#ffffff", accent:"#1a1f48", stars:true  },
+  mint:   { name:"Menthe",  skyTop:"#3a8a8a", skyMid:"#7ec9c2", skyHorizon:"#cdeee4", cloudHi:"#f6fff8", cloudMid:"#bfe0d8", cloudLo:"#5a8a86", bodyA:"#fff6b8", bodyB:"#ffc870", star:"#ffffff", accent:"#1f4a48", stars:false },
+};
+
+/* ── Sprites nuages ── */
+const CLOUD_SPRITES = [
+  [
+    "................","................","....11111.......",
+    "...1222211......","..12222222111...",".122222222221...",
+    "..1233222232....","...33333333.....","................",
+  ],
+  [
+    "........................",".......1111.............","....1112222111..........",
+    "...12222222221..1111....","..1222222222221122221...",".12222322222222222222...",
+    "..1233322222222232221...","...333333322233333......","........................",
+  ],
+  [
+    "................................","........11111...........11......",
+    ".....1112222111......1112211....","..1112222222221111112222222111..",
+    ".12222222232222222222222232221..",".122223222222232222222222222221.",
+    "..1233322222322333222222232221..","...333333333333333333333333333..","................................",
+  ],
+  [
+    "....................","...111..............","..12221.....111.....",
+    ".122222111.12211....",".12222222112222.....",
+    "..12233222222221....","...33333322223......","........3333........",
+  ],
+];
+
+function decodeSprite(rows) {
+  const pixels = [];
+  const h = rows.length, w = rows[0].length;
+  for (let y = 0; y < h; y++)
+    for (let x = 0; x < w; x++) {
+      const c = rows[y][x];
+      if (c !== '.' && c !== ' ') pixels.push({ x, y, c: parseInt(c, 10) });
+    }
+  return { w, h, pixels };
+}
+const CLOUDS = CLOUD_SPRITES.map(decodeSprite);
+
+function mulberry32(seed) {
+  return () => { let t = seed += 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+function hexToRgb(h) { const m = /^#?([a-f0-9]{6})$/i.exec(h.trim()); if (!m) return [0,0,0]; const n = parseInt(m[1],16); return [(n>>16)&255,(n>>8)&255,n&255]; }
+function rgbToHex(r,g,b) { return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join(''); }
+function lerpColor(a,b,t) { const A=hexToRgb(a),B=hexToRgb(b); return rgbToHex(Math.round(A[0]+(B[0]-A[0])*t),Math.round(A[1]+(B[1]-A[1])*t),Math.round(A[2]+(B[2]-A[2])*t)); }
+function quantize(hex,steps) { const [r,g,b]=hexToRgb(hex); const q=v=>Math.round(v/255*steps)/steps*255|0; return rgbToHex(q(r),q(g),q(b)); }
+
+function drawCloud(ctx,sprite,ox,oy,pal,layer) {
+  const fade=layer===0?0:(layer===1?0.25:0.55);
+  const c1=lerpColor(pal.cloudHi,pal.skyHorizon,fade),c2=lerpColor(pal.cloudMid,pal.skyHorizon,fade),c3=lerpColor(pal.cloudLo,pal.skyHorizon,fade);
+  for (const p of sprite.pixels) { ctx.fillStyle=p.c===1?c1:(p.c===2?c2:c3); ctx.fillRect(ox+p.x,oy+p.y,1,1); }
+}
+function drawPixelDisc(ctx,cx,cy,r) { for(let y=-r;y<=r;y++){const w=Math.floor(Math.sqrt(r*r-y*y));ctx.fillRect(cx-w,cy+y,w*2+1,1);} }
+function drawCelestial(ctx,pal,kind,time) {
+  const cx=Math.round(ctx.canvas.width*.72), cy=Math.round(ctx.canvas.height*.28+Math.sin(time*.15)), r=12;
+  ctx.fillStyle=pal.bodyA; ctx.globalAlpha=.22; drawPixelDisc(ctx,cx,cy,r+5);
+  ctx.globalAlpha=.32; drawPixelDisc(ctx,cx,cy,r+3); ctx.globalAlpha=1;
+  ctx.fillStyle=pal.bodyB; drawPixelDisc(ctx,cx,cy,r);
+  ctx.fillStyle=pal.bodyA; drawPixelDisc(ctx,cx-1,cy-1,r-2);
+  if(kind==='moon'){ ctx.fillStyle=pal.skyTop; drawPixelDisc(ctx,cx+5,cy-3,r-1); ctx.fillStyle=pal.bodyB; ctx.fillRect(cx-3,cy+1,2,2); ctx.fillRect(cx-5,cy-2,1,1); ctx.fillRect(cx+1,cy+3,1,1); }
+}
+
+/* ── SkyController ── */
+function SkyController() {
+  const [t, setTweak] = useTweaks({ palette:'night', cloudSpeed:6, cloudDensity:6, celestial:'moon', scanlines:false, pixelSize:4 });
+  const [panelOpen, setPanelOpen] = useState(false);
+  const stateRef = useRef({ clouds:[], stars:[] });
+
+  const buildWorld = useCallback(() => {
+    const rng = mulberry32(1337), PIX_W=320, PIX_H=180, clouds=[];
+    for (let i=0; i<t.cloudDensity; i++) {
+      const sprite=CLOUDS[Math.floor(rng()*CLOUDS.length)], layer=rng()<.45?0:(rng()<.6?1:2);
+      clouds.push({ sprite, layer, x:Math.floor(rng()*PIX_W), y:8+Math.floor(rng()*(PIX_H*.55)), offset:rng()*1000 });
+    }
+    clouds.sort((a,b)=>b.layer-a.layer);
+    const stars=[];
+    for(let i=0;i<70;i++) stars.push({ x:Math.floor(rng()*PIX_W), y:Math.floor(rng()*PIX_H*.7), twinkle:rng()*Math.PI*2, bright:rng()>.75 });
+    stateRef.current = { clouds, stars };
+  }, [t.cloudDensity]);
+
+  useEffect(() => { buildWorld(); }, [buildWorld]);
+
+  /* pixelSize en premier — le canvas doit être dimensionné avant le premier draw */
+  useEffect(() => {
+    const canvas=document.getElementById('sky'); if(!canvas)return;
+    const ratios={2:480,3:400,4:320,5:256,6:213,8:160}, w=ratios[t.pixelSize]||320;
+    canvas.width=w; canvas.height=Math.round(w*9/16);
+  }, [t.pixelSize]);
+
+  useEffect(() => {
+    const canvas = document.getElementById('sky');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let raf;
+    function draw(now) {
+      const pal=PALETTES[t.palette]||PALETTES.night, time=now*.001, W=canvas.width, H=canvas.height;
+      for(let y=0;y<H;y++){const f=y/H;ctx.fillStyle=quantize(f<.45?lerpColor(pal.skyTop,pal.skyMid,f/.45):lerpColor(pal.skyMid,pal.skyHorizon,(f-.45)/.55),14);ctx.fillRect(0,y,W,1);}
+      if(pal.stars){for(const s of stateRef.current.stars){const tw=.5+.5*Math.sin(time*2+s.twinkle);if(s.bright||tw>.4){ctx.fillStyle=pal.star;ctx.globalAlpha=s.bright?(.7+.3*tw):(.4*tw);ctx.fillRect(s.x,s.y,1,1);if(s.bright&&tw>.7){ctx.fillRect(s.x-1,s.y,1,1);ctx.fillRect(s.x+1,s.y,1,1);ctx.fillRect(s.x,s.y-1,1,1);ctx.fillRect(s.x,s.y+1,1,1);}}}ctx.globalAlpha=1;}
+      if(t.celestial!=='none') drawCelestial(ctx,pal,t.celestial,time);
+      for(const c of stateRef.current.clouds){const ls=t.cloudSpeed*(1-c.layer*.35),tot=W+60,drift=(time*ls+c.offset)%tot,x=Math.floor(c.x-drift+tot)%tot-30,bob=Math.floor(Math.sin(time*.3+c.offset)*.6);drawCloud(ctx,c.sprite,x,c.y+bob,pal,c.layer);}
+      raf=requestAnimationFrame(draw);
+    }
+    raf=requestAnimationFrame(draw);
+    return ()=>cancelAnimationFrame(raf);
+  }, [t.palette, t.cloudSpeed, t.celestial]);
+
+  useEffect(() => {
+    const el=document.getElementById('scanlines'); if(el) el.style.opacity=t.scanlines?'1':'0';
+  }, [t.scanlines]);
+
+  /* sync panelOpen avec le TweaksPanel interne */
+  useEffect(() => {
+    window.postMessage({ type: panelOpen ? '__activate_edit_mode' : '__deactivate_edit_mode' }, '*');
+  }, [panelOpen]);
+
+  return (
+    <>
+      <button className="sky-fab" onClick={() => setPanelOpen(o => !o)} title="Réglages du ciel">
+        {panelOpen ? '✕' : '✦'}
+      </button>
+      <TweaksPanel title="Pixel Sky">
+        <TweakSection label="Ambiance" />
+        <TweakSelect label="Palette" value={t.palette}
+          options={Object.entries(PALETTES).map(([k,v])=>({value:k,label:v.name}))}
+          onChange={v=>setTweak('palette',v)} />
+        <TweakRadio label="Astre" value={t.celestial}
+          options={[{value:'sun',label:'Soleil'},{value:'moon',label:'Lune'},{value:'none',label:'Aucun'}]}
+          onChange={v=>setTweak('celestial',v)} />
+        <TweakSection label="Nuages" />
+        <TweakSlider label="Vitesse" value={t.cloudSpeed} min={0} max={30} step={1} onChange={v=>setTweak('cloudSpeed',v)} />
+        <TweakSlider label="Densité" value={t.cloudDensity} min={0} max={14} step={1} onChange={v=>setTweak('cloudDensity',v)} />
+        <TweakSection label="Rendu" />
+        <TweakRadio label="Taille pixel" value={t.pixelSize}
+          options={[{value:3,label:'Fin'},{value:4,label:'Moyen'},{value:6,label:'Gros'}]}
+          onChange={v=>setTweak('pixelSize',Number(v))} />
+        <TweakToggle label="Scanlines CRT" value={t.scanlines} onChange={v=>setTweak('scanlines',v)} />
+      </TweaksPanel>
+    </>
+  );
+}
+
+/* ── Icônes ── */
+const Icon = ({d,size=14,stroke=1.6}) => <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">{d}</svg>;
+const CoffeeIcon = () => <Icon d={<><path d="M3 8h13v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/><path d="M6 3v2M9 3v2M12 3v2"/></>} />;
+const MoonIcon   = () => <Icon d={<><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></>} />;
+const ClockIcon  = () => <Icon d={<><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>} />;
+const GitHubGlyph = ({size=14}) => <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>;
+
+const Pip = ({glyph='⟨/⟩'}) => <span className="pip" aria-hidden="true"><span className="pip-inner">{glyph}</span></span>;
+const FillLine = ({width='100%'}) => <span className="fill-line" style={{width}} />;
+
+/* ── CollectorCard ── */
+function CollectorCard() {
+  const cardRef = useRef(null);
+  const wrapRef = useRef(null);
+  const [repos, setRepos] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/Ade-gns/repos?sort=updated&per_page=8&type=public')
+      .then(r => r.ok ? r.json() : [])
+      .then(data => { if (Array.isArray(data)) setRepos(data.filter(r => !r.fork).slice(0,2)); })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const wrap=wrapRef.current, card=cardRef.current;
+    if (!wrap||!card) return;
+    let raf=0, tx=.5, ty=.5, cx=.5, cy=.5, active=false;
+    const tick = () => {
+      cx+=(tx-cx)*.18; cy+=(ty-cy)*.18;
+      card.style.setProperty('--rx',`${(.5-cy)*14}deg`);
+      card.style.setProperty('--ry',`${(cx-.5)*14}deg`);
+      card.style.setProperty('--mx',`${(cx*100).toFixed(2)}%`);
+      card.style.setProperty('--my',`${(cy*100).toFixed(2)}%`);
+      card.style.setProperty('--active',active?1:0);
+      raf=requestAnimationFrame(tick);
+    };
+    raf=requestAnimationFrame(tick);
+    const onMove = e => { const r=card.getBoundingClientRect(); tx=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)); ty=Math.max(0,Math.min(1,(e.clientY-r.top)/r.height)); active=true; };
+    const onLeave = () => { tx=.5; ty=.5; active=false; };
+    wrap.addEventListener('pointermove',onMove);
+    wrap.addEventListener('pointerleave',onLeave);
+    return () => { cancelAnimationFrame(raf); wrap.removeEventListener('pointermove',onMove); wrap.removeEventListener('pointerleave',onLeave); };
+  }, []);
+
+  return (
+    <div className="card-wrap" ref={wrapRef}>
+      <div className="card" ref={cardRef}>
+        <div className="grain" />
+        <header className="card-head">
+          <span className="tag">DEV · BASIC</span>
+          <h1 className="name">Ade-gns</h1>
+          <div className="head-right">
+            <span className="hp-label">XP</span>
+            <span className="hp-value">3<span className="hp-unit">ANS</span></span>
+            <Pip glyph="⟨/⟩" />
+          </div>
+        </header>
+        <div className="art-frame">
+          <image-slot id="ade-avatar" shape="rect" placeholder="déposez votre avatar ici" src="logos/Ade%20le%20dresseur%20.png"></image-slot>
+          <div className="art-overlay">
+            <span className="holo-shine" />
+            <span className="holo-rainbow" />
+          </div>
+        </div>
+        <p className="subline">
+          <span className="muted">No.</span> 042
+          <span className="dot">·</span> Développeur Sauvage
+          <span className="dot">·</span> <span className="muted">HT:</span> 1m80
+          <span className="dot">·</span> <span className="muted">CAFÉ:</span> ∞
+        </p>
+        <section className="moves">
+          {repos.length > 0 ? repos.map((repo,i) => (
+            <article key={repo.id} className="move">
+              <div className="move-head">
+                <div className="pips"><Pip glyph="⟨/⟩" />{i===1&&<Pip glyph="{ }" />}</div>
+                <h2 className="move-title">{repo.name}</h2>
+                {repo.language ? <span className="move-lang">{repo.language}</span> : <FillLine width="80px" />}
+              </div>
+              <div className="move-body">
+                <span className="move-desc">{repo.description||'En cours de développement…'}</span>
+                <a className="move-link" href={repo.html_url} target="_blank" rel="noopener">↗ Ade-gns/{repo.name}</a>
+              </div>
+            </article>
+          )) : (
+            <>
+              <article className="move"><div className="move-head"><div className="pips"><Pip glyph="⟨/⟩" /></div><h2 className="move-title">Chargement…</h2><FillLine width="120px" /></div><div className="move-body"><FillLine /><FillLine /><FillLine width="78%" /></div></article>
+              <article className="move"><div className="move-head"><div className="pips"><Pip glyph="⟨/⟩" /><Pip glyph="{ }" /></div><h2 className="move-title">…</h2><FillLine width="120px" /></div><div className="move-body"><FillLine /><FillLine /><FillLine width="64%" /></div></article>
+            </>
+          )}
+        </section>
+        <div className="stats">
+          <div className="stat"><span className="stat-label">faiblesse</span><span className="stat-val"><CoffeeIcon /> ×2</span></div>
+          <div className="stat"><span className="stat-label">résistance</span><span className="stat-val"><MoonIcon /> −20</span></div>
+          <div className="stat"><span className="stat-label">retraite</span><span className="stat-val"><ClockIcon /><ClockIcon /></span></div>
+        </div>
+        <footer className="card-foot">
+          <span className="illus">Illus. <em>moi-même</em></span>
+          <div className="foot-right">
+            <span className="set">001/001 ◆</span>
+            <a className="gh" href="https://github.com/Ade-gns" target="_blank" rel="noopener"><GitHubGlyph /> Ade-gns</a>
+          </div>
+          <span className="flavor">« git commit -m "ship it" » — sa technique signature.</span>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+/* ── GhPanel ── */
+function GhPanel() {
+  const [stats, setStats] = useState({ repos:'—', followers:'—' });
+  useEffect(() => {
+    fetch('https://api.github.com/users/Ade-gns')
+      .then(r=>r.ok?r.json():null).then(d=>{if(d)setStats({repos:d.public_repos,followers:d.followers});}).catch(()=>{});
+  }, []);
+  return (
+    <div className="gh-panel">
+      <div>
+        <div className="gh-panel-eyebrow">activité en direct</div>
+        <h2 className="gh-panel-heading">Contributions<br/>GitHub</h2>
+      </div>
+      <hr className="gh-divider" />
+      <div className="gh-chart-wrap">
+        <img src="https://ghchart.rshah.org/b8924e/Ade-gns" alt="Contributions GitHub d'Ade-gns" loading="lazy" />
+        <div className="gh-chart-caption">contributions · 12 derniers mois</div>
+      </div>
+      <div className="gh-stats-row">
+        <div className="gh-stat-box"><span className="gh-stat-label">Dépôts publics</span><span className="gh-stat-val">{stats.repos}</span><span className="gh-stat-sub">projets GitHub</span></div>
+        <div className="gh-stat-box"><span className="gh-stat-label">Followers</span><span className="gh-stat-val">{stats.followers}</span><span className="gh-stat-sub">sur GitHub</span></div>
+      </div>
+      <a className="gh-profile-btn" href="https://github.com/Ade-gns" target="_blank" rel="noopener"><GitHubGlyph size={13} /> github.com/Ade-gns →</a>
+    </div>
+  );
+}
+
+/* ── LikesSection ── */
+function LikesSection() {
+  const likes = [
+    { tag:'jeux vidéo', title:'RPG & Open World', desc:"Passionné de RPG, d'action-aventure et de jeux open-world. J'explore des univers entiers quand je ne suis pas en train de coder." },
+    { tag:'musique', title:'Lo-fi & Game OST', desc:"Des playlists lo-fi pour coder, des OST de jeux vidéo pour rêver. La musique est mon fond sonore au quotidien." },
+    { tag:'open-source', title:'Code & Partage', desc:"Je construis des projets open-source pour qu'ils soient utiles aux autres. Chaque commit compte." },
+  ];
+  return (
+    <div className="likes-section">
+      <div><div className="likes-eyebrow">passions</div><h2 className="likes-heading">Ce que j'aime</h2></div>
+      <hr className="likes-divider" />
+      <div className="likes-grid">
+        {likes.map((item,i) => (
+          <div key={i} className="like-card">
+            <span className="like-tag">{item.tag}</span>
+            <h3 className="like-title">{item.title}</h3>
+            <p className="like-desc">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Rendu ── */
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <>
+    <SkyController />
+    <div className="page-layout">
+      <CollectorCard />
+      <div className="right-col">
+        <GhPanel />
+        <LikesSection />
+      </div>
+    </div>
+  </>
+);
+</script>
+
+</body>
+</html>

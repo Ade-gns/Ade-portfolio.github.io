@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Pixel Sky</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#fff}
+  /* The sky canvas fills the viewport, pixel-perfect scaling */
+  #sky{position:fixed;inset:0;width:100vw;height:100vh;display:block;
+    image-rendering:pixelated;image-rendering:crisp-edges;z-index:0}
+  /* Demo content sitting on top, to show this as a website background */
+  .demo{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:24px;
+    text-shadow:2px 2px 0 rgba(0,0,0,.55)}
+  .demo h1{font-family:"Press Start 2P","VT323",ui-monospace,monospace;
+    font-size:clamp(28px,5vw,64px);margin:0 0 18px;letter-spacing:.02em;
+    color:#fff;line-height:1.1}
+  .demo p{font-family:"VT323",ui-monospace,monospace;font-size:clamp(18px,2.4vw,28px);
+    margin:0;letter-spacing:.04em;opacity:.95;max-width:34ch}
+  .demo .chip{margin-top:22px;display:inline-block;padding:8px 14px;
+    background:rgba(0,0,0,.35);border:2px solid #fff;border-radius:0;
+    font-family:"VT323",ui-monospace,monospace;font-size:18px;letter-spacing:.06em;
+    text-shadow:none}
+  /* Optional scanline overlay */
+  .scanlines{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:overlay;
+    background:repeating-linear-gradient(to bottom,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);
+    opacity:0}
+  #root{position:fixed;inset:0;z-index:5;pointer-events:none}
+  #root>*{pointer-events:auto}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="sky"></canvas>
+<div class="scanlines" id="scanlines"></div>
+
+<div class="demo" id="demo">
+  <h1>BIENVENUE</h1>
+  <p>un petit coin de ciel<br>pour votre site internet</p>
+  <span class="chip">▸ PRESS START</span>
+</div>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="js/tweaks-panel.jsx"></script>
+
+<script type="text/babel">
+/* ──────────────────────────────────────────────────────────────────────
+   PIXEL SKY  —  canvas-based, drifting clouds, multiple palettes.
+   The world is rendered at low resolution (PIX_W × PIX_H) and scaled
+   up via CSS image-rendering: pixelated so every pixel stays crisp.
+   ────────────────────────────────────────────────────────────────────── */
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "dawn",
+  "cloudSpeed": 8,
+  "cloudDensity": 7,
+  "celestial": "moon",
+  "scanlines": false,
+  "pixelSize": 4,
+  "showDemo": true
+}/*EDITMODE-END*/;
+
+/* Palettes — top sky, mid sky, horizon, cloud light, cloud mid, cloud shadow,
+   sun/moon body, sun/moon glow, star, accent (mountains/silhouette) */
+const PALETTES = {
+  day: {
+    name: "Midi",
+    skyTop:    "#6cbef0",
+    skyMid:    "#9ad7f5",
+    skyHorizon:"#d3eefb",
+    cloudHi:   "#ffffff",
+    cloudMid:  "#dde7f1",
+    cloudLo:   "#9fb4cc",
+    bodyA:     "#fff4b8",
+    bodyB:     "#ffd86b",
+    star:      "#ffffff",
+    accent:    "#2f4858",
+    stars: false,
+  },
+  sunset: {
+    name: "Coucher",
+    skyTop:    "#3a2a6b",
+    skyMid:    "#d96b6b",
+    skyHorizon:"#ffd07a",
+    cloudHi:   "#ffe1b0",
+    cloudMid:  "#d97a7a",
+    cloudLo:   "#6b2e6b",
+    bodyA:     "#ffe48a",
+    bodyB:     "#ff8a4c",
+    star:      "#ffe8b0",
+    accent:    "#26143a",
+    stars: false,
+  },
+  night: {
+    name: "Nuit",
+    skyTop:    "#0b1230",
+    skyMid:    "#1a2a5e",
+    skyHorizon:"#3a4a8a",
+    cloudHi:   "#9fb3d8",
+    cloudMid:  "#5a6a9a",
+    cloudLo:   "#2a335c",
+    bodyA:     "#eaf0ff",
+    bodyB:     "#bcc6e6",
+    star:      "#ffffff",
+    accent:    "#06091a",
+    stars: true,
+  },
+  dawn: {
+    name: "Aube",
+    skyTop:    "#2a3f78",
+    skyMid:    "#a07ab0",
+    skyHorizon:"#ffc9a0",
+    cloudHi:   "#ffe6d0",
+    cloudMid:  "#b07ea0",
+    cloudLo:   "#4a3a78",
+    bodyA:     "#fff0c8",
+    bodyB:     "#ffb070",
+    star:      "#ffffff",
+    accent:    "#1a1f48",
+    stars: true,
+  },
+  mint: {
+    name: "Menthe",
+    skyTop:    "#3a8a8a",
+    skyMid:    "#7ec9c2",
+    skyHorizon:"#cdeee4",
+    cloudHi:   "#f6fff8",
+    cloudMid:  "#bfe0d8",
+    cloudLo:   "#5a8a86",
+    bodyA:     "#fff6b8",
+    bodyB:     "#ffc870",
+    star:      "#ffffff",
+    accent:    "#1f4a48",
+    stars: false,
+  },
+};
+
+/* ─── Cloud sprites: 0 = transparent, 1 = highlight, 2 = mid, 3 = shadow ─── */
+const CLOUD_SPRITES = [
+  // small puff
+  [
+    "................",
+    "................",
+    "....11111.......",
+    "...1222211......",
+    "..12222222111...",
+    ".122222222221...",
+    "..1233222232....",
+    "...33333333.....",
+    "................",
+  ],
+  // medium cloud
+  [
+    "........................",
+    ".......1111.............",
+    "....1112222111..........",
+    "...12222222221..1111....",
+    "..1222222222221122221...",
+    ".12222322222222222222...",
+    "..1233322222222232221...",
+    "...333333322233333......",
+    "........................",
+  ],
+  // big stretched cloud
+  [
+    "................................",
+    "........11111...........11......",
+    ".....1112222111......1112211....",
+    "..1112222222221111112222222111..",
+    ".12222222232222222222222232221..",
+    ".122223222222232222222222222221.",
+    "..1233322222322333222222232221..",
+    "...333333333333333333333333333..",
+    "................................",
+  ],
+  // wispy cloud
+  [
+    "....................",
+    "...111..............",
+    "..12221.....111.....",
+    ".122222111.12211....",
+    ".12222222112222.....",
+    "..12233222222221....",
+    "...33333322223......",
+    "........3333........",
+  ],
+];
+
+/* Decode an ASCII sprite into an array of {x,y,c} pixels */
+function decodeSprite(rows){
+  const w = rows[0].length, h = rows.length;
+  const pixels = [];
+  for(let y=0;y<h;y++){
+    for(let x=0;x<w;x++){
+      const c = rows[y][x];
+      if(c !== '.') pixels.push({x,y,c:parseInt(c,10)});
+    }
+  }
+  return {w,h,pixels};
+}
+const CLOUDS = CLOUD_SPRITES.map(decodeSprite);
+
+/* Deterministic random (so star/cloud positions don't reshuffle each frame) */
+function mulberry32(seed){
+  return function(){
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function PixelSky(){
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const stateRef = React.useRef({clouds:[], stars:[], lastPalette:null, lastDensity:null});
+
+  /* Build cloud layer when density changes */
+  const buildWorld = React.useCallback((pal)=>{
+    const rng = mulberry32(1337);
+    const PIX_W = 320, PIX_H = 180;
+    const count = t.cloudDensity;
+    const clouds = [];
+    for(let i=0;i<count;i++){
+      const sprite = CLOUDS[Math.floor(rng()*CLOUDS.length)];
+      const layer  = rng() < 0.45 ? 0 : (rng() < 0.6 ? 1 : 2); // 0 near, 2 far
+      const y = 8 + Math.floor(rng() * (PIX_H * 0.55));
+      const x = Math.floor(rng() * PIX_W);
+      clouds.push({sprite, layer, x, y, offset: rng()*1000});
+    }
+    // Sort so far clouds draw first
+    clouds.sort((a,b)=>b.layer-a.layer);
+    const stars = [];
+    for(let i=0;i<70;i++){
+      stars.push({
+        x: Math.floor(rng()*PIX_W),
+        y: Math.floor(rng()*PIX_H*0.7),
+        twinkle: rng()*Math.PI*2,
+        bright: rng() > 0.75,
+      });
+    }
+    stateRef.current.clouds = clouds;
+    stateRef.current.stars  = stars;
+  },[t.cloudDensity]);
+
+  React.useEffect(()=>{ buildWorld(); },[buildWorld]);
+
+  /* Main render loop */
+  React.useEffect(()=>{
+    const canvas = document.getElementById('sky');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let raf;
+
+    function draw(now){
+      const pal = PALETTES[t.palette] || PALETTES.day;
+      const time = now * 0.001;
+      const PIX_W = canvas.width, PIX_H = canvas.height;
+
+      /* Sky gradient — drawn as horizontal pixel bands for crisp pixel look */
+      const bandCount = PIX_H;
+      for(let y=0;y<bandCount;y++){
+        const f = y / bandCount;
+        let col;
+        if(f < 0.45){
+          col = lerpColor(pal.skyTop, pal.skyMid, f / 0.45);
+        }else{
+          col = lerpColor(pal.skyMid, pal.skyHorizon, (f-0.45)/0.55);
+        }
+        // Quantize to a small step to feel pixel-arty (banding)
+        col = quantize(col, 14);
+        ctx.fillStyle = col;
+        ctx.fillRect(0,y,PIX_W,1);
+      }
+
+      /* Stars (night/dawn only) */
+      if(pal.stars){
+        for(const s of stateRef.current.stars){
+          const tw = 0.5 + 0.5*Math.sin(time*2 + s.twinkle);
+          if(s.bright || tw > 0.4){
+            ctx.fillStyle = pal.star;
+            ctx.globalAlpha = s.bright ? (0.7 + 0.3*tw) : (0.4*tw);
+            ctx.fillRect(s.x, s.y, 1, 1);
+            if(s.bright && tw > 0.7){
+              ctx.fillRect(s.x-1, s.y, 1, 1);
+              ctx.fillRect(s.x+1, s.y, 1, 1);
+              ctx.fillRect(s.x, s.y-1, 1, 1);
+              ctx.fillRect(s.x, s.y+1, 1, 1);
+            }
+          }
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      /* Sun or moon */
+      if(t.celestial !== 'none'){
+        drawCelestial(ctx, pal, t.celestial, time);
+      }
+
+      /* Clouds — drift left over time, wrap around. Parallax by layer. */
+      const speed = t.cloudSpeed; // pixels per second at layer 0
+      for(const c of stateRef.current.clouds){
+        const layerSpeed = speed * (1 - c.layer * 0.35); // far clouds slower
+        const totalW = PIX_W + 60;
+        const drift = (time * layerSpeed + c.offset) % totalW;
+        const x = Math.floor(c.x - drift + totalW) % totalW - 30;
+        // Bob slightly
+        const bob = Math.floor(Math.sin(time*0.3 + c.offset) * 0.6);
+        drawCloud(ctx, c.sprite, x, c.y + bob, pal, c.layer);
+      }
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    raf = requestAnimationFrame(draw);
+    return ()=>cancelAnimationFrame(raf);
+  },[t.palette, t.cloudSpeed, t.celestial]);
+
+  /* Pixel size on canvas (visual chunkiness) — we set CSS width fixed to viewport,
+     and tweak the canvas internal size to make pixels bigger/smaller. */
+  React.useEffect(()=>{
+    const canvas = document.getElementById('sky');
+    if(!canvas) return;
+    // pixelSize is informational; we keep internal res = 320x180 and let CSS scale
+    // Bigger pixelSize → smaller internal res to amplify chunkiness
+    const ratios = {2:480, 3:400, 4:320, 5:256, 6:213, 8:160};
+    const w = ratios[t.pixelSize] || 320;
+    const h = Math.round(w * 9/16);
+    canvas.width = w; canvas.height = h;
+  },[t.pixelSize]);
+
+  /* Scanlines toggle */
+  React.useEffect(()=>{
+    const el = document.getElementById('scanlines');
+    if(el) el.style.opacity = t.scanlines ? '1' : '0';
+  },[t.scanlines]);
+
+  /* Demo content visibility */
+  React.useEffect(()=>{
+    const el = document.getElementById('demo');
+    if(el) el.style.display = t.showDemo ? 'flex' : 'none';
+  },[t.showDemo]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Ambiance" />
+      <TweakSelect label="Palette" value={t.palette}
+        options={Object.entries(PALETTES).map(([k,v])=>({value:k,label:v.name}))}
+        onChange={(v)=>setTweak('palette',v)} />
+      <TweakRadio label="Astre" value={t.celestial}
+        options={[{value:'sun',label:'Soleil'},{value:'moon',label:'Lune'},{value:'none',label:'Aucun'}]}
+        onChange={(v)=>setTweak('celestial',v)} />
+
+      <TweakSection label="Nuages" />
+      <TweakSlider label="Vitesse" value={t.cloudSpeed} min={0} max={30} step={1}
+        onChange={(v)=>setTweak('cloudSpeed',v)} />
+      <TweakSlider label="Densité" value={t.cloudDensity} min={0} max={14} step={1}
+        onChange={(v)=>setTweak('cloudDensity',v)} />
+
+      <TweakSection label="Rendu" />
+      <TweakRadio label="Taille pixel" value={t.pixelSize}
+        options={[{value:3,label:'Fin'},{value:4,label:'Moyen'},{value:6,label:'Gros'}]}
+        onChange={(v)=>setTweak('pixelSize',v)} />
+      <TweakToggle label="Scanlines CRT" value={t.scanlines}
+        onChange={(v)=>setTweak('scanlines',v)} />
+      <TweakToggle label="Texte de démo" value={t.showDemo}
+        onChange={(v)=>setTweak('showDemo',v)} />
+    </TweaksPanel>
+  );
+}
+
+/* ───── Drawing helpers ───── */
+
+function hexToRgb(h){
+  const m = /^#?([a-f0-9]{6})$/i.exec(h.trim());
+  if(!m) return [0,0,0];
+  const n = parseInt(m[1],16);
+  return [(n>>16)&255,(n>>8)&255,n&255];
+}
+function rgbToHex(r,g,b){
+  return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+function lerpColor(a,b,t){
+  const A=hexToRgb(a), B=hexToRgb(b);
+  return rgbToHex(
+    Math.round(A[0]+(B[0]-A[0])*t),
+    Math.round(A[1]+(B[1]-A[1])*t),
+    Math.round(A[2]+(B[2]-A[2])*t),
+  );
+}
+function quantize(hex, steps){
+  const [r,g,b] = hexToRgb(hex);
+  const q = (v)=>Math.round(v/255*steps)/steps*255|0;
+  return rgbToHex(q(r),q(g),q(b));
+}
+
+function drawCloud(ctx, sprite, ox, oy, pal, layer){
+  // Layer 0 = nearest (full color), 1 = mid (slightly desaturated), 2 = far (faded into sky)
+  const fade = layer === 0 ? 0 : (layer === 1 ? 0.25 : 0.55);
+  const c1 = lerpColor(pal.cloudHi, pal.skyHorizon, fade);
+  const c2 = lerpColor(pal.cloudMid, pal.skyHorizon, fade);
+  const c3 = lerpColor(pal.cloudLo, pal.skyHorizon, fade);
+  for(const p of sprite.pixels){
+    ctx.fillStyle = p.c === 1 ? c1 : (p.c === 2 ? c2 : c3);
+    ctx.fillRect(ox + p.x, oy + p.y, 1, 1);
+  }
+}
+
+function drawCelestial(ctx, pal, kind, time){
+  const PIX_W = ctx.canvas.width, PIX_H = ctx.canvas.height;
+  const cx = Math.round(PIX_W * 0.72);
+  const cy = Math.round(PIX_H * 0.28 + Math.sin(time*0.15)*1);
+  const r  = 12;
+  // Soft glow ring (1-bit halo, pixelated)
+  ctx.fillStyle = pal.bodyA;
+  ctx.globalAlpha = 0.22;
+  drawPixelDisc(ctx, cx, cy, r+5);
+  ctx.globalAlpha = 0.32;
+  drawPixelDisc(ctx, cx, cy, r+3);
+  ctx.globalAlpha = 1;
+  // Body — two-tone
+  ctx.fillStyle = pal.bodyB;
+  drawPixelDisc(ctx, cx, cy, r);
+  ctx.fillStyle = pal.bodyA;
+  drawPixelDisc(ctx, cx-1, cy-1, r-2);
+  if(kind === 'moon'){
+    // Bite out a crescent
+    ctx.fillStyle = pal.skyTop;
+    drawPixelDisc(ctx, cx+5, cy-3, r-1);
+    // Craters
+    ctx.fillStyle = pal.bodyB;
+    ctx.fillRect(cx-3, cy+1, 2, 2);
+    ctx.fillRect(cx-5, cy-2, 1, 1);
+    ctx.fillRect(cx+1, cy+3, 1, 1);
+  }
+}
+
+function drawPixelDisc(ctx, cx, cy, r){
+  // Bresenham-ish filled disc, integer pixels
+  for(let y=-r;y<=r;y++){
+    const w = Math.floor(Math.sqrt(r*r - y*y));
+    ctx.fillRect(cx - w, cy + y, w*2 + 1, 1);
+  }
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PixelSky />);
+</script>
+</body>
+</html>
