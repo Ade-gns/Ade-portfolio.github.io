@@ -72,26 +72,63 @@ Je suis **Adelphe Borges-Silva**, technicien informatique en alternance chez **F
 
 ```
 portfolio/
-├── Index.html        # Page principale
-├── script.js         # Scripts et interactions
+├── index.html            # Page principale (portfolio)
+├── Carte Dev.html        # Carte de dresseur interactive
+├── Pixel Sky.html        # Ciel pixel art animé (prototype)
+├── script.js             # Scripts et interactions
 ├── css/
-│   └── style.css     # Feuille de styles
-├── assets/
-│   └── ...           # Images, icônes, documents
+│   ├── style.css         # Styles de la page principale
+│   └── carte-dev.css     # Styles de la Carte Dev
+├── js/
+│   ├── image-slot.js     # Web Component drag-drop d'image
+│   └── tweaks-panel.jsx  # Panneau de réglages live (React)
+├── logos/                # Icônes technos et avatar
+├── previews/             # Aperçus des documents PDF
 └── README.md
 ```
+
+---
+
+## ✨ Carte Dev
+
+Page dédiée inspirée des cartes Pokémon, accessible depuis le menu principal.
+
+- **Carte collector** interactive avec effet holographique 3D au survol
+- **Fond Pixel Sky** — ciel animé en pixel art (canvas) avec nuages, étoiles, lune/soleil
+- **Panneaux glassmorphisme** — Contributions GitHub live + section "Ce que j'aime"
+- **Tweaks panel** — bouton ✦ (bas droite) pour régler la palette du ciel, vitesse des nuages, taille des pixels, scanlines CRT, etc.
+- Projets GitHub récupérés en direct via l'API GitHub
+
+**Palettes disponibles** : Nuit · Aube · Coucher · Midi · Menthe
 
 ---
 
 ## 🚀 Lancer le projet en local
 
 ```bash
-git clone https://github.com/Ade-gns/portfolio.git
-cd portfolio
-# Ouvrir Index.html dans votre navigateur
+git clone https://github.com/Ade-gns/Ade-portfolio.github.io.git
+cd Ade-portfolio.github.io
+# Servir via un serveur HTTP local (requis pour les appels API)
+python3 -m http.server 8000
+# Ouvrir http://localhost:8000 dans le navigateur
 ```
 
-Aucune dépendance requise — le projet est en HTML/CSS/JS vanilla.
+> Un serveur HTTP local est recommandé pour les requêtes API GitHub.
+
+---
+
+## 🛠️ Stack technique
+
+| Couche | Technologie |
+|---|---|
+| Structure | HTML5 sémantique |
+| Styles | CSS3 (custom properties, grid, glassmorphism) |
+| Interactivité | React 18 (UMD CDN) + Babel standalone |
+| Animations | Canvas 2D (pixel sky), CSS 3D transforms |
+| Données | GitHub REST API (repos, stats) |
+| Composants | Web Components (`<image-slot>`) |
+
+Aucune dépendance npm — tout fonctionne sans build step.
 
 ---
 
@@ -104,4 +141,4 @@ Ce portfolio a été conçu pour :
 
 ---
 
-*Développé avec ❤️ par Adelphe Borges-Silva — 2026*
+*Développé par Adelphe Borges-Silva — 2026*
