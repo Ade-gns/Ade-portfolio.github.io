@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Carte Dev — Ade-gns</title>
+<title>Dev Card — Ade-gns</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -275,11 +275,11 @@ const { useRef, useEffect, useState, useCallback } = React;
 
 /* ── Palettes ── */
 const PALETTES = {
-  day:    { name:"Midi",    skyTop:"#6cbef0", skyMid:"#9ad7f5", skyHorizon:"#d3eefb", cloudHi:"#ffffff", cloudMid:"#dde7f1", cloudLo:"#9fb4cc", bodyA:"#fff4b8", bodyB:"#ffd86b", star:"#ffffff", accent:"#2f4858", stars:false },
-  sunset: { name:"Coucher", skyTop:"#3a2a6b", skyMid:"#d96b6b", skyHorizon:"#ffd07a", cloudHi:"#ffe1b0", cloudMid:"#d97a7a", cloudLo:"#6b2e6b", bodyA:"#ffe48a", bodyB:"#ff8a4c", star:"#ffe8b0", accent:"#26143a", stars:false },
-  night:  { name:"Nuit",    skyTop:"#0b1230", skyMid:"#1a2a5e", skyHorizon:"#3a4a8a", cloudHi:"#9fb3d8", cloudMid:"#5a6a9a", cloudLo:"#2a335c", bodyA:"#eaf0ff", bodyB:"#bcc6e6", star:"#ffffff", accent:"#06091a", stars:true  },
-  dawn:   { name:"Aube",    skyTop:"#2a3f78", skyMid:"#a07ab0", skyHorizon:"#ffc9a0", cloudHi:"#ffe6d0", cloudMid:"#b07ea0", cloudLo:"#4a3a78", bodyA:"#fff0c8", bodyB:"#ffb070", star:"#ffffff", accent:"#1a1f48", stars:true  },
-  mint:   { name:"Menthe",  skyTop:"#3a8a8a", skyMid:"#7ec9c2", skyHorizon:"#cdeee4", cloudHi:"#f6fff8", cloudMid:"#bfe0d8", cloudLo:"#5a8a86", bodyA:"#fff6b8", bodyB:"#ffc870", star:"#ffffff", accent:"#1f4a48", stars:false },
+  day:    { name:"Noon",    skyTop:"#6cbef0", skyMid:"#9ad7f5", skyHorizon:"#d3eefb", cloudHi:"#ffffff", cloudMid:"#dde7f1", cloudLo:"#9fb4cc", bodyA:"#fff4b8", bodyB:"#ffd86b", star:"#ffffff", accent:"#2f4858", stars:false },
+  sunset: { name:"Sunset", skyTop:"#3a2a6b", skyMid:"#d96b6b", skyHorizon:"#ffd07a", cloudHi:"#ffe1b0", cloudMid:"#d97a7a", cloudLo:"#6b2e6b", bodyA:"#ffe48a", bodyB:"#ff8a4c", star:"#ffe8b0", accent:"#26143a", stars:false },
+  night:  { name:"Night",    skyTop:"#0b1230", skyMid:"#1a2a5e", skyHorizon:"#3a4a8a", cloudHi:"#9fb3d8", cloudMid:"#5a6a9a", cloudLo:"#2a335c", bodyA:"#eaf0ff", bodyB:"#bcc6e6", star:"#ffffff", accent:"#06091a", stars:true  },
+  dawn:   { name:"Dawn",    skyTop:"#2a3f78", skyMid:"#a07ab0", skyHorizon:"#ffc9a0", cloudHi:"#ffe6d0", cloudMid:"#b07ea0", cloudLo:"#4a3a78", bodyA:"#fff0c8", bodyB:"#ffb070", star:"#ffffff", accent:"#1a1f48", stars:true  },
+  mint:   { name:"Mint",  skyTop:"#3a8a8a", skyMid:"#7ec9c2", skyHorizon:"#cdeee4", cloudHi:"#f6fff8", cloudMid:"#bfe0d8", cloudLo:"#5a8a86", bodyA:"#fff6b8", bodyB:"#ffc870", star:"#ffffff", accent:"#1f4a48", stars:false },
 };
 
 /* ── Sprites nuages ── */
@@ -401,21 +401,21 @@ function SkyController() {
         {panelOpen ? '✕' : '✦'}
       </button>
       <TweaksPanel title="Pixel Sky">
-        <TweakSection label="Ambiance" />
+        <TweakSection label="Mood" />
         <TweakSelect label="Palette" value={t.palette}
           options={Object.entries(PALETTES).map(([k,v])=>({value:k,label:v.name}))}
           onChange={v=>setTweak('palette',v)} />
-        <TweakRadio label="Astre" value={t.celestial}
-          options={[{value:'sun',label:'Soleil'},{value:'moon',label:'Lune'},{value:'none',label:'Aucun'}]}
+        <TweakRadio label="Celestial" value={t.celestial}
+          options={[{value:'sun',label:'Sun'},{value:'moon',label:'Moon'},{value:'none',label:'None'}]}
           onChange={v=>setTweak('celestial',v)} />
-        <TweakSection label="Nuages" />
-        <TweakSlider label="Vitesse" value={t.cloudSpeed} min={0} max={30} step={1} onChange={v=>setTweak('cloudSpeed',v)} />
-        <TweakSlider label="Densité" value={t.cloudDensity} min={0} max={14} step={1} onChange={v=>setTweak('cloudDensity',v)} />
-        <TweakSection label="Rendu" />
-        <TweakRadio label="Taille pixel" value={t.pixelSize}
-          options={[{value:3,label:'Fin'},{value:4,label:'Moyen'},{value:6,label:'Gros'}]}
+        <TweakSection label="Clouds" />
+        <TweakSlider label="Speed" value={t.cloudSpeed} min={0} max={30} step={1} onChange={v=>setTweak('cloudSpeed',v)} />
+        <TweakSlider label="Density" value={t.cloudDensity} min={0} max={14} step={1} onChange={v=>setTweak('cloudDensity',v)} />
+        <TweakSection label="Render" />
+        <TweakRadio label="Pixel size" value={t.pixelSize}
+          options={[{value:3,label:'Fine'},{value:4,label:'Medium'},{value:6,label:'Large'}]}
           onChange={v=>setTweak('pixelSize',Number(v))} />
-        <TweakToggle label="Scanlines CRT" value={t.scanlines} onChange={v=>setTweak('scanlines',v)} />
+        <TweakToggle label="CRT Scanlines" value={t.scanlines} onChange={v=>setTweak('scanlines',v)} />
       </TweaksPanel>
     </>
   );
@@ -474,12 +474,12 @@ function CollectorCard() {
           <h1 className="name">Ade-gns</h1>
           <div className="head-right">
             <span className="hp-label">XP</span>
-            <span className="hp-value">3<span className="hp-unit">ANS</span></span>
+            <span className="hp-value">3<span className="hp-unit">YRS</span></span>
             <Pip glyph="⟨/⟩" />
           </div>
         </header>
         <div className="art-frame">
-          <image-slot id="ade-avatar" shape="rect" placeholder="déposez votre avatar ici" src="logos/Ade%20le%20dresseur%20.png"></image-slot>
+          <image-slot id="ade-avatar" shape="rect" placeholder="drop your avatar here" src="logos/Ade%20le%20dresseur%20.png"></image-slot>
           <div className="art-overlay">
             <span className="holo-shine" />
             <span className="holo-rainbow" />
@@ -487,9 +487,9 @@ function CollectorCard() {
         </div>
         <p className="subline">
           <span className="muted">No.</span> 042
-          <span className="dot">·</span> Développeur Sauvage
+          <span className="dot">·</span> Wild Developer
           <span className="dot">·</span> <span className="muted">HT:</span> 1m80
-          <span className="dot">·</span> <span className="muted">CAFÉ:</span> ∞
+          <span className="dot">·</span> <span className="muted">COFFEE:</span> ∞
         </p>
         <section className="moves">
           {repos.length > 0 ? repos.map((repo,i) => (
@@ -500,29 +500,29 @@ function CollectorCard() {
                 {repo.language ? <span className="move-lang">{repo.language}</span> : <FillLine width="80px" />}
               </div>
               <div className="move-body">
-                <span className="move-desc">{repo.description||'En cours de développement…'}</span>
+                <span className="move-desc">{repo.description||'Work in progress…'}</span>
                 <a className="move-link" href={repo.html_url} target="_blank" rel="noopener">↗ Ade-gns/{repo.name}</a>
               </div>
             </article>
           )) : (
             <>
-              <article className="move"><div className="move-head"><div className="pips"><Pip glyph="⟨/⟩" /></div><h2 className="move-title">Chargement…</h2><FillLine width="120px" /></div><div className="move-body"><FillLine /><FillLine /><FillLine width="78%" /></div></article>
+              <article className="move"><div className="move-head"><div className="pips"><Pip glyph="⟨/⟩" /></div><h2 className="move-title">Loading…</h2><FillLine width="120px" /></div><div className="move-body"><FillLine /><FillLine /><FillLine width="78%" /></div></article>
               <article className="move"><div className="move-head"><div className="pips"><Pip glyph="⟨/⟩" /><Pip glyph="{ }" /></div><h2 className="move-title">…</h2><FillLine width="120px" /></div><div className="move-body"><FillLine /><FillLine /><FillLine width="64%" /></div></article>
             </>
           )}
         </section>
         <div className="stats">
-          <div className="stat"><span className="stat-label">faiblesse</span><span className="stat-val"><CoffeeIcon /> ×2</span></div>
-          <div className="stat"><span className="stat-label">résistance</span><span className="stat-val"><MoonIcon /> −20</span></div>
-          <div className="stat"><span className="stat-label">retraite</span><span className="stat-val"><ClockIcon /><ClockIcon /></span></div>
+          <div className="stat"><span className="stat-label">weakness</span><span className="stat-val"><CoffeeIcon /> ×2</span></div>
+          <div className="stat"><span className="stat-label">resistance</span><span className="stat-val"><MoonIcon /> −20</span></div>
+          <div className="stat"><span className="stat-label">retreat</span><span className="stat-val"><ClockIcon /><ClockIcon /></span></div>
         </div>
         <footer className="card-foot">
-          <span className="illus">Illus. <em>moi-même</em></span>
+          <span className="illus">Illus. <em>myself</em></span>
           <div className="foot-right">
             <span className="set">001/001 ◆</span>
             <a className="gh" href="https://github.com/Ade-gns" target="_blank" rel="noopener"><GitHubGlyph /> Ade-gns</a>
           </div>
-          <span className="flavor">« git commit -m "ship it" » — sa technique signature.</span>
+          <span className="flavor">« git commit -m "ship it" » — his signature move.</span>
         </footer>
       </div>
     </div>
@@ -539,17 +539,17 @@ function GhPanel() {
   return (
     <div className="gh-panel">
       <div>
-        <div className="gh-panel-eyebrow">activité en direct</div>
-        <h2 className="gh-panel-heading">Contributions<br/>GitHub</h2>
+        <div className="gh-panel-eyebrow">live activity</div>
+        <h2 className="gh-panel-heading">GitHub<br/>Contributions</h2>
       </div>
       <hr className="gh-divider" />
       <div className="gh-chart-wrap">
-        <img src="https://ghchart.rshah.org/b8924e/Ade-gns" alt="Contributions GitHub d'Ade-gns" loading="lazy" />
-        <div className="gh-chart-caption">contributions · 12 derniers mois</div>
+        <img src="https://ghchart.rshah.org/b8924e/Ade-gns" alt="Ade-gns GitHub contributions graph" loading="lazy" />
+        <div className="gh-chart-caption">contributions · last 12 months</div>
       </div>
       <div className="gh-stats-row">
-        <div className="gh-stat-box"><span className="gh-stat-label">Dépôts publics</span><span className="gh-stat-val">{stats.repos}</span><span className="gh-stat-sub">projets GitHub</span></div>
-        <div className="gh-stat-box"><span className="gh-stat-label">Followers</span><span className="gh-stat-val">{stats.followers}</span><span className="gh-stat-sub">sur GitHub</span></div>
+        <div className="gh-stat-box"><span className="gh-stat-label">Public repos</span><span className="gh-stat-val">{stats.repos}</span><span className="gh-stat-sub">GitHub projects</span></div>
+        <div className="gh-stat-box"><span className="gh-stat-label">Followers</span><span className="gh-stat-val">{stats.followers}</span><span className="gh-stat-sub">on GitHub</span></div>
       </div>
       <a className="gh-profile-btn" href="https://github.com/Ade-gns" target="_blank" rel="noopener"><GitHubGlyph size={13} /> github.com/Ade-gns →</a>
     </div>
@@ -559,13 +559,13 @@ function GhPanel() {
 /* ── LikesSection ── */
 function LikesSection() {
   const likes = [
-    { tag:'jeux vidéo', title:'RPG & Open World', desc:"Passionné de RPG, d'action-aventure et de jeux open-world. J'explore des univers entiers quand je ne suis pas en train de coder." },
-    { tag:'musique', title:'Lo-fi & Game OST', desc:"Des playlists lo-fi pour coder, des OST de jeux vidéo pour rêver. La musique est mon fond sonore au quotidien." },
-    { tag:'open-source', title:'Code & Partage', desc:"Je construis des projets open-source pour qu'ils soient utiles aux autres. Chaque commit compte." },
+    { tag:'video games', title:'RPG & Open World', desc:"Passionate about RPGs, action-adventure and open-world games. I explore entire universes when I'm not coding." },
+    { tag:'music', title:'Lo-fi & Game OST', desc:"Lo-fi playlists to code to, video game OSTs to dream to. Music is my constant background soundtrack." },
+    { tag:'open-source', title:'Code & Sharing', desc:"I build open-source projects so they can be useful to others. Every commit counts." },
   ];
   return (
     <div className="likes-section">
-      <div><div className="likes-eyebrow">passions</div><h2 className="likes-heading">Ce que j'aime</h2></div>
+      <div><div className="likes-eyebrow">passions</div><h2 className="likes-heading">What I like</h2></div>
       <hr className="likes-divider" />
       <div className="likes-grid">
         {likes.map((item,i) => (

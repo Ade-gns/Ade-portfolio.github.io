@@ -103,15 +103,15 @@ body {
 
 .card {
   /* ── thème bleu — surcharge des variables sur la carte ── */
-  --paper:      #d4e4f8;
-  --paper-2:    #b8cef0;
-  --ink:        #0d1830;
-  --ink-soft:   #2a4878;
+  --paper:      #ddeeff;
+  --paper-2:    #c4d8f4;
+  --ink:        #040c1e;
+  --ink-soft:   #0f1e3a;
   --frame:      #2a5fb5;
   --frame-deep: #1a3d8a;
   --frame-dark: #0d1f52;
-  --rule:       #3a6ab4;
-  --accent:     oklch(0.68 0.18 220);
+  --rule:       #2a5099;
+  --accent:     oklch(0.45 0.20 230);
 
   --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%; --active: 0;
   position: absolute; inset: 0;
@@ -331,8 +331,8 @@ body {
   border-bottom: 1px solid var(--rule);
   letter-spacing: 0.02em;
 }
-.subline .muted { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; opacity: 0.7; }
-.subline .dot { margin: 0 6px; color: #3a6ab4; }
+.subline .muted { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; opacity: 0.85; }
+.subline .dot { margin: 0 6px; color: #1a3d8a; }
 
 /* ─── moves ─── */
 .moves {
@@ -389,7 +389,7 @@ body {
   color: var(--accent);
   text-decoration: none;
   letter-spacing: 0.04em;
-  opacity: 0.85;
+  opacity: 1;
 }
 .move-link:hover { opacity: 1; text-decoration: underline; }
 .move-lang {
@@ -421,7 +421,7 @@ body {
   display: flex; align-items: center; gap: 6px;
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 .stat + .stat { border-left: 1px solid var(--rule); padding-left: 10px; }
 .stat-label {
@@ -446,7 +446,7 @@ body {
   column-gap: 10px;
   row-gap: 3px;
   font-size: 9.5px;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 .illus {
   font-family: 'JetBrains Mono', monospace;
@@ -466,7 +466,7 @@ body {
   font-family: 'DM Serif Text', serif;
   font-style: italic;
   font-size: 10px;
-  color: var(--ink-soft);
+  color: var(--ink);
   margin-top: 2px;
   line-height: 1.3;
 }
