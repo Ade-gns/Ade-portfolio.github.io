@@ -469,11 +469,14 @@ function CollectorCard() {
     <div className="card-wrap" ref={wrapRef}>
       <div className="card" ref={cardRef}>
         <div className="grain" />
+        <div className="holo-frame" />
+        <div className="card-texture" />
         <header className="card-head">
           <span className="tag">DEV · BASIC</span>
           <h1 className="name">Ade-gns</h1>
           <div className="head-right">
             <span className="hp-label">XP</span>
+            <div className="xp-bar-wrap"><div className="xp-bar" /></div>
             <span className="hp-value">3<span className="hp-unit">YRS</span></span>
             <Pip glyph="⟨/⟩" />
           </div>
