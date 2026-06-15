@@ -8,8 +8,6 @@
 
 Je suis **Adelphe Borges-Silva**, technicien informatique en alternance chez **Fiducial** (Courbevoie), avec plus de 6 ans d'expérience terrain dans le support, l'administration système et la gestion de parcs informatiques.
 
-- 📍 Gonesse (95500)
-- 📞 07 52 91 88 08
 - 🔗 [LinkedIn](https://linkedin.com/in/ad%C3%A8lphe-borges-silva-b45936316)
 - 💻 [GitHub](https://github.com/Ade-gns)
 
