@@ -771,3 +771,52 @@ body {
   line-height: 1.6;
   margin: 0;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive mobile
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  body {
+    padding: 24px 20px;
+    place-items: start;
+  }
+
+  .page-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .card-wrap {
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .gh-stats-row--4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px 14px;
+  }
+
+  .card-wrap {
+    max-width: 100%;
+  }
+
+  .gh-panel,
+  .likes-section {
+    padding: 20px 18px;
+  }
+
+  .gh-stats-row--4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sky-fab {
+    bottom: 14px;
+    right: 14px;
+  }
+}
